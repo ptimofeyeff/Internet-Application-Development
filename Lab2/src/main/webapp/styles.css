@@ -43,8 +43,18 @@ header{
 span{
     margin-left: 1.2%;
 }
+#error{
+    color: red;
+    font-weight: bold;
+}
 
 
+input[type="button"]{
+    width: 40px;
+    height: 22px;
+    border:solid 1px #004F72;
+    outline: 0;
+}
 
 
 
