@@ -48,9 +48,7 @@
 
         </div>
         <div class="area">
-
             <canvas id="area"> </canvas>
-            <!--img src="resources/area.jpg" alt=""-->
         </div>
     </div>
 
