@@ -48,10 +48,13 @@
 
         </div>
         <div class="area">
-            <img src="resources/area.jpg" alt="">
+
+            <canvas id="area"> </canvas>
+            <!--img src="resources/area.jpg" alt=""-->
         </div>
     </div>
 
     <script src="Validations.js" charset="UTF-8" ></script>
+    <script src="area.js"> </script>
 </body>
 </html>
