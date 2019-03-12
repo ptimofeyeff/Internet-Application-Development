@@ -19,7 +19,7 @@
                 <br>
                 <div class="checkbox">
                     Значение Y: <span> -2 </span>
-                         <input id="-2" class="Y" type="checkbox" checked = "checked"><br>
+                         <input id="-2" class="Y" type="checkbox"><br>
                     -1.5 <input id ="-1.5" class = "Y" type="checkbox"><br>
                     -1   <input id ="-1" class = "Y" type="checkbox"><br>
                     -0.5 <input id ="-0.5" class = "Y" type="checkbox"><br>
@@ -51,8 +51,7 @@
             <canvas id="area"> </canvas>
         </div>
     </div>
-
-    <script src="Validations.js" charset="UTF-8" ></script>
     <script src="area.js"> </script>
+    <script src="Validations.js" charset="UTF-8" ></script>
 </body>
 </html>

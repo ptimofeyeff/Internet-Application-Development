@@ -98,7 +98,6 @@ canvas.onclick = function (event) {
     let y = event.offsetY;
 
     context.beginPath();
-    context.srokeStyle = 'red';
     context.fillStyle = 'red';
     context.arc(x,y,2,0, 2*Math.PI,true);
     context.stroke();
