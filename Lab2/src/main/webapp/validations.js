@@ -1,6 +1,5 @@
-
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector('#submitButton').addEventListener('click', submit);
+    document.querySelector('#submitButton').addEventListener('click', submitForm);
 });
 
 let error = document.querySelector("#error");
@@ -20,7 +19,7 @@ for (let i = 0; i < buttons.length; i++){
     })
 }
 
-function submit(e) {
+function submitForm(e) {
     e.preventDefault();
 
     if(validateForm()){

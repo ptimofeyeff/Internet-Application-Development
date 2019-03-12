@@ -47,11 +47,13 @@
             </form>
 
         </div>
+
         <div class="area">
-            <canvas id="area"> </canvas>
+            <canvas id="area" width="450" height="450"> </canvas>
         </div>
     </div>
-    <script src="area.js"> </script>
-    <script src="Validations.js" charset="UTF-8" ></script>
+
+    <script src="area.js" charset="UTF-8"> </script>
+    <script src="validations.js" charset="UTF-8" ></script>
 </body>
 </html>

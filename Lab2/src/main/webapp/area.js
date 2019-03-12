@@ -1,6 +1,6 @@
 let canvas = document.querySelector("#area");
 let context = canvas.getContext("2d");
-canvas.width = canvas.height = 450;
+
 
 //-------------Рисуем--фигуры---------------------------------------------------------
 
@@ -92,18 +92,6 @@ context.moveTo(425,221);
 context.lineTo(425,229);
 context.stroke();
 
-// рисуем точки на местах клика мышки
-canvas.onclick = function (event) {
-    let x = event.offsetX;
-    let y = event.offsetY;
-
-    context.beginPath();
-    context.fillStyle = 'red';
-    context.arc(x,y,2,0, 2*Math.PI,true);
-    context.stroke();
-    context.fill();
-};
-
 
 context.beginPath();
 context.fillStyle = 'black';
@@ -123,12 +111,32 @@ context.fillText("Y", 235,15);
 context.fillText("X", 435,248);
 
 
+document.addEventListener("DOMContentLoaded", function(){
+    canvas.addEventListener("click", submitArea);
+});
 
 
 
+function submitArea(){
+    if (buttonValue !== null){
+        let x = event.offsetX;
+        let y = event.offsetY;
 
+        context.beginPath();
+        context.fillStyle = 'red';
+        context.arc(x,y,2,0, 2*Math.PI,true);
+        context.stroke();
+        context.fill();
+        error.innerHTML = "";
 
-
+        fetch('', {
+            method: 'GET'
+        }).then();
+    }else {
+        error.innerHTML = "Невозможно определить координаты точки, " + "\n" +
+            "выберети значение R";
+    }
+}
 
 
 
