@@ -2,7 +2,7 @@
 <%@ page contentType="text/html; charset=Cp1251"  %>
 <html lang="ru">
 <head>
-    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="stylesheet" href="styles/styles.css" type="text/css">
     <meta charset="UTF-8">
     <title>Lab #2</title>
 </head>
@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    <script src="area.js" charset="UTF-8"> </script>
-    <script src="validations.js" charset="UTF-8" ></script>
+    <script src="JS/area.js" charset="UTF-8"> </script>
+    <script src="JS/validations.js" charset="UTF-8" ></script>
 </body>
 </html>
