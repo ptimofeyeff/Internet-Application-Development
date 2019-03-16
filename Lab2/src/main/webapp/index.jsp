@@ -50,6 +50,7 @@
 
         <div class="area">
             <canvas id="area" width="450" height="450"> </canvas>
+            <canvas id="points" width="450" height="450"></canvas>
         </div>
     </div>
 

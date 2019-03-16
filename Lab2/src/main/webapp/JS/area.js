@@ -1,6 +1,11 @@
 let canvas = document.querySelector("#area");
 let context = canvas.getContext("2d");
 
+let canvasPoints = document.querySelector("#points");
+let contextPoints = canvasPoints.getContext("2d");
+
+let points = [];
+let pointCount = 0;
 
 //-------------Рисуем--фигуры---------------------------------------------------------
 
@@ -93,6 +98,7 @@ context.lineTo(425,229);
 context.stroke();
 
 
+// Рисуем подписи к графикам
 context.beginPath();
 context.fillStyle = 'black';
 context.font = "16pt bold Arial";
@@ -112,31 +118,57 @@ context.fillText("X", 435,248);
 
 
 document.addEventListener("DOMContentLoaded", function(){
-    canvas.addEventListener("click", submitArea);
+    canvasPoints.addEventListener("click", paintPoint);
 });
 
 
 
-function submitArea(){
+function paintPoint(){
     if (buttonValue !== null){
-        let x = event.offsetX;
-        let y = event.offsetY;
 
-        context.beginPath();
-        context.fillStyle = 'red';
-        context.arc(x,y,2,0, 2*Math.PI,true);
-        context.stroke();
-        context.fill();
+        let hx = event.offsetX;
+        let hy = event.offsetY;
+
+        let gx =  (hx - (canvasPoints.width/2))*0.005*buttonValue;
+        let gy = (-(hy - (canvasPoints.height/2)))*0.005*buttonValue;
+        let point = {};
+
+        point.gx = gx;
+        point.gy = gy;
+
+        points[pointCount] = point;
+
+        contextPoints.beginPath();
+        contextPoints.fillStyle = 'red';
+        contextPoints.arc(hx,hy,2,0, 2*Math.PI,true);
+        contextPoints.stroke();
+        contextPoints.fill();
         error.innerHTML = "";
+        pointCount++;
 
-        fetch('', {
-            method: 'GET'
-        }).then();
     }else {
         error.innerHTML = "Невозможно определить координаты точки, " + "\n" +
             "выберети значение R";
     }
 }
 
+function repaintPoint(point) {
+
+    let gx = point.gx;
+    let gy = point.gy;
+
+    let hx = gx / (0.005 * buttonValue) + 225;
+    let hy = 225 - (gy / (0.005 * buttonValue));
+
+    contextPoints.beginPath();
+    contextPoints.fillStyle = 'red';
+    contextPoints.arc(hx, hy, 2, 0, 2 * Math.PI, true);
+    contextPoints.stroke();
+    contextPoints.fill();
+}
 
 
+function repaintPoints() {
+    contextPoints.clearRect(0, 0, canvasPoints.width, canvasPoints.height);
+    points.forEach( (point) => repaintPoint(point));
+}

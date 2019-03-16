@@ -30,6 +30,7 @@ header{
 }
 
 .area{
+    position: relative;
     float: right;
     width: 26%;
     margin-right: 12%;
@@ -57,11 +58,11 @@ input[type="button"]{
 
 }
 
-#area{
-    width: 450px;
-    height: 450px;
+#points{
+    position: absolute;
 }
 
+#area{
+    position: absolute;
 
-
-
+}

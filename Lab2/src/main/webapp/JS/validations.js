@@ -116,6 +116,9 @@ function paint(button) {
         buttons[i].style.background = DefaultButnColor;
     }
     button.style.background = '#7e8279';
+    if (points.length !== 0){
+        repaintPoints();
+    }
 }
 
 function isEmpty(x) {
