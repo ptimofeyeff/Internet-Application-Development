@@ -10,12 +10,8 @@ public class ControllerServlet extends javax.servlet.http.HttpServlet {
         RequestDispatcher dispatcher;
 
 
-        if ((request.getParameter("X")!=null) &&
-                (request.getParameter("Y")!=null) &&
-                (request.getParameter("R")!=null)) {
-
+        if ((request.getParameter("X")!=null) && (request.getParameter("Y")!=null) && (request.getParameter("R")!=null)) {
             dispatcher = request.getRequestDispatcher("/WEB-INF/AreaCheckServlet");
-
         }else {
             dispatcher = request.getRequestDispatcher("/index.jsp");
         }

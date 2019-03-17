@@ -1,4 +1,4 @@
-
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html; charset=Cp1251"  %>
 <html lang="ru">
 <head>
@@ -44,6 +44,7 @@
                 <input id="submitButton" type="submit" value="Проверить">
                 <br>
                 <p id="error"> </p>
+                <p id="result"><% new Date(); %>  </p>
             </form>
 
         </div>
