@@ -1,4 +1,5 @@
-<%@ page import="java.util.Date" %>
+<%@ page import="model.Result" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=Cp1251"  %>
 <html lang="ru">
 <head>
@@ -38,21 +39,63 @@
                 <input type="button" class = "R" value="3">
                 <input type="button" class = "R" value="4">
                 <input type="button" class = "R" value="5">
-
                 <br>
                 <br>
                 <input id="submitButton" type="submit" value="Проверить">
                 <br>
                 <p id="error"> </p>
-                <p id="result"><% new Date(); %>  </p>
             </form>
-
         </div>
+
 
         <div class="area">
             <canvas id="area" width="450" height="450"> </canvas>
             <canvas id="points" width="450" height="450"></canvas>
         </div>
+
+        <table id="result" border="1">
+            <thead>
+                <tr>
+                    <th> X </th>
+                    <th> Y </th>
+                    <th> R </th>
+                    <th> Result </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                   <%
+
+                       List<Result> results = (List<Result>) request.getAttribute("Results");
+                       if(results != null && !results.isEmpty()){
+
+                           for (Result result: results){
+                               System.out.println("X = " + result.getX());
+                               System.out.println("Y = " + result.getY());
+                               System.out.println("R = " + result.getR());
+                               System.out.println("Result = " + result.isResult());
+                           }
+
+                           for(Result result : results){
+                               out.println("<tr>");
+                               out.println("<td>" + result.getX() + "</td>");
+                               out.println("<td>" + result.getY() + "</td>");
+                               out.println("<td>" + result.getR() + "</td>");
+                               out.println("<td>" + result.isResult() + "</td>");
+                               out.print("</tr>");
+                           }
+                       }else {
+                           System.out.println(results);
+                       }
+                   %>
+
+
+
+            </tbody>
+
+
+        </table>
+
     </div>
 
     <script src="JS/area.js" charset="UTF-8"> </script>

@@ -25,23 +25,9 @@ function submitForm(e) {
     if(validateForm()){
         let X = getX();
         let Y = getY();
-
-        fetch('http://localhost:8080/Lab2/ControllerServlet?X='+X+'&Y='+Y+'&R='+buttonValue)
-            .then(
-                function (response) {
-                    if (response.status !== 200){
-                        console.log("Looks like there was a problem. Status code: " + response.status);
-                    }else {
-                        console.log("Все ок (ы)");
-                    }
-
-                }
-            )
+        fetch('http://localhost:8080/Lab2/ControllerServlet?X='+X+'&Y='+Y+'&R='+buttonValue);
     }
 }
-
-
-
 
 
 function validateForm() {

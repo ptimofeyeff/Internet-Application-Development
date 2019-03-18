@@ -1,27 +1,43 @@
+import model.Model;
+import model.Result;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class AreaCheckServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         double x = Double.parseDouble(request.getParameter("X"));
         double y = Double.parseDouble(request.getParameter("Y"));
         double radius = Integer.parseInt(request.getParameter("R"));
 
-       if(validateForm(x,y,radius)){
-            if (checkForm(x,y, radius)){
-               System.out.println(true);
-           }else {
-                System.out.println(false);
-            }
-       }
+        boolean result = checkForm(x,y,radius);
 
+        Model model = Model.getInstance();
+
+
+        HttpSession session = request.getSession();
+     /*   if (session.getAttribute("Results") != null){
+            model.addAll((List<Result>) session.getAttribute("Results"));
+        }*/
+        model.add(new Result(x, y, radius, result));
+        session.setAttribute("Results", model.getModel());
+
+
+        request.setAttribute("Results", session.getAttribute("Results"));
+
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        dispatcher.forward(request, response);
     }
 
     private boolean checkForm(double x, double y, double radius){

@@ -64,5 +64,15 @@ input[type="button"]{
 
 #area{
     position: absolute;
+}
 
+#result{
+    position: relative;
+    top: 500px;
+    right: 600px;
+}
+
+td, th{
+    width: 100px;
+    text-align: center;
 }
