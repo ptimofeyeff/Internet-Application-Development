@@ -36,7 +36,7 @@ public class AreaCheckServlet extends HttpServlet {
         request.setAttribute("Results", session.getAttribute("Results"));
 
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/resTable.jsp");
         dispatcher.forward(request, response);
     }
 

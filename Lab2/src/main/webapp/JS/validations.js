@@ -25,7 +25,11 @@ function submitForm(e) {
     if(validateForm()){
         let X = getX();
         let Y = getY();
-        fetch('http://localhost:8080/Lab2/ControllerServlet?X='+X+'&Y='+Y+'&R='+buttonValue);
+        let url = 'http://localhost:8080/Lab2/ControllerServlet?X='+X+'&Y='+Y+'&R='+buttonValue;
+        fetch(url)
+            .then(response => response.text())
+            .then(ans => document.querySelector("#resTable").innerHTML = ans);
+
     }
 }
 

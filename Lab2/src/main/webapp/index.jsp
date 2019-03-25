@@ -1,6 +1,6 @@
 <%@ page import="model.Result" %>
 <%@ page import="java.util.List" %>
-<%@ page contentType="text/html; charset=Cp1251"  %>
+<%@ page contentType="text/html; charset=UTF-8"  %>
 <html lang="ru">
 <head>
     <link rel="stylesheet" href="styles/styles.css" type="text/css">
@@ -8,18 +8,18 @@
     <title>Lab #2</title>
 </head>
 <body>
-    <header> Тимофеев Павел, группа P3202, вариант 541852</header>
+    <header> РўРёРјРѕС„РµРµРІ РџР°РІРµР», РіСЂСѓРїРїР° P3202, РІР°СЂРёР°РЅС‚ 541852</header>
     <div class="main">
         <div class="form">
             <form id="form" method="get">
                 <label for="x">
-                    Значение X: (-3...3)
+                    Р—РЅР°С‡РµРЅРёРµ X: (-3...3)
                     <input id="x" type="text">
                 </label>
                 <br>
                 <br>
                 <div class="checkbox">
-                    Значение Y: <span> -2 </span>
+                    Р—РЅР°С‡РµРЅРёРµ Y: <span> -2 </span>
                          <input id="-2" class="Y" type="checkbox"><br>
                     -1.5 <input id ="-1.5" class = "Y" type="checkbox"><br>
                     -1   <input id ="-1" class = "Y" type="checkbox"><br>
@@ -32,7 +32,7 @@
                 </div>
 
                 <br>
-                Значение R:
+                Р—РЅР°С‡РµРЅРёРµ R:
                 <input type="hidden" id="R_value" name="R_value">
                 <input type="button" class = "R" value="1">
                 <input type="button" class = "R" value="2">
@@ -41,7 +41,7 @@
                 <input type="button" class = "R" value="5">
                 <br>
                 <br>
-                <input id="submitButton" type="submit" value="Проверить">
+                <input id="submitButton" type="submit" value="РџСЂРѕРІРµСЂРёС‚СЊ">
                 <br>
                 <p id="error"> </p>
             </form>
@@ -62,35 +62,7 @@
                     <th> Result </th>
                 </tr>
             </thead>
-            <tbody>
-
-                   <%
-
-                       List<Result> results = (List<Result>) request.getAttribute("Results");
-                       if(results != null && !results.isEmpty()){
-
-                           for (Result result: results){
-                               System.out.println("X = " + result.getX());
-                               System.out.println("Y = " + result.getY());
-                               System.out.println("R = " + result.getR());
-                               System.out.println("Result = " + result.isResult());
-                           }
-
-                           for(Result result : results){
-                               out.println("<tr>");
-                               out.println("<td>" + result.getX() + "</td>");
-                               out.println("<td>" + result.getY() + "</td>");
-                               out.println("<td>" + result.getR() + "</td>");
-                               out.println("<td>" + result.isResult() + "</td>");
-                               out.print("</tr>");
-                           }
-                       }else {
-                           System.out.println(results);
-                       }
-                   %>
-
-
-
+            <tbody id="resTable">
             </tbody>
 
 
