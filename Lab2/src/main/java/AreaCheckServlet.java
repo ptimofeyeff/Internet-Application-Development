@@ -15,6 +15,8 @@ public class AreaCheckServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         double x = Double.parseDouble(request.getParameter("X"));
         double y = Double.parseDouble(request.getParameter("Y"));
@@ -26,11 +28,15 @@ public class AreaCheckServlet extends HttpServlet {
 
 
         HttpSession session = request.getSession();
-     /*   if (session.getAttribute("Results") != null){
-            model.addAll((List<Result>) session.getAttribute("Results"));
-        }*/
+        if (session.getAttribute("Results") != null){
+           List<Result> results = (List<Result>) session.getAttribute("Results");
+          //  System.out.println(results);
+        }else {
+            System.out.println("В сессии ничего не было");
+        }
         model.add(new Result(x, y, radius, result));
-        session.setAttribute("Results", model.getModel());
+        List<Result> tmp = model.getModel();
+        session.setAttribute("Results", tmp);
 
 
         request.setAttribute("Results", session.getAttribute("Results"));

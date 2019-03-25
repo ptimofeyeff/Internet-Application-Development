@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Objects;
+
 
 public class Result {
     private double x;
@@ -31,19 +31,41 @@ public class Result {
         return result;
     }
 
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "x=" + x +
+                ", y=" + y +
+                ", r=" + r +
+                ", result=" + result +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Result)) return false;
+
         Result result1 = (Result) o;
-        return Double.compare(result1.x, x) == 0 &&
-                Double.compare(result1.y, y) == 0 &&
-                Double.compare(result1.r, r) == 0 &&
-                result == result1.result;
+
+        if (Double.compare(result1.getX(), getX()) != 0) return false;
+        if (Double.compare(result1.getY(), getY()) != 0) return false;
+        if (Double.compare(result1.getR(), getR()) != 0) return false;
+        return isResult() == result1.isResult();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y, r, result);
+        int result1;
+        long temp;
+        temp = Double.doubleToLongBits(getX());
+        result1 = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getY());
+        result1 = 31 * result1 + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getR());
+        result1 = 31 * result1 + (int) (temp ^ (temp >>> 32));
+        result1 = 31 * result1 + (isResult() ? 1 : 0);
+        return result1;
     }
 }

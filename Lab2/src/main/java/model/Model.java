@@ -14,12 +14,16 @@ public class Model {
 
 
     private Model () {
-        model = new ArrayList<>();
+        model = new ArrayList<Result>();
     }
 
 
     public void add(Result result){
         model.add(result);
+    }
+
+    public void clear(){
+        model.clear();
     }
 
     public void addAll(List<Result> results){
