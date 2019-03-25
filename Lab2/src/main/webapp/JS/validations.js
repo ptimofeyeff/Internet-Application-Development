@@ -8,9 +8,6 @@ let DefaultButnColor = getComputedStyle(buttons[0]).background;
 let buttonValue = null;
 
 
-
-
-
 for (let i = 0; i < buttons.length; i++){
     buttons[i].addEventListener('click', function (event) {
         event.preventDefault();
@@ -25,12 +22,20 @@ function submitForm(e) {
     if(validateForm()){
         let X = getX();
         let Y = getY();
-        let url = 'http://localhost:8080/Lab2/ControllerServlet?X='+X+'&Y='+Y+'&R='+buttonValue;
+        const url = '/Lab2/ControllerServlet?X='+X+'&Y='+Y+'&R='+buttonValue;
         fetch(url)
             .then(response => response.text())
             .then(ans => document.querySelector("#resTable").innerHTML = ans);
 
     }
+}
+
+
+function sumbitArea(x, y){
+    const url = '/Lab2/ControllerServlet?X='+x+'&Y='+y+'&R='+buttonValue;
+    fetch(url)
+        .then(response => response.text())
+        .then(ans => document.querySelector("#resTable").innerHTML = ans);
 }
 
 

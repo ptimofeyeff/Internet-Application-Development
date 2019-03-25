@@ -128,16 +128,17 @@ function paintPoint(){
 
         let hx = event.offsetX;
         let hy = event.offsetY;
-
-        let gx =  (hx - (canvasPoints.width/2))*0.005*buttonValue;
-        let gy = (-(hy - (canvasPoints.height/2)))*0.005*buttonValue;
+        let gx =  Math.round((hx - (canvasPoints.width/2))*0.005*buttonValue*1000)/1000;
+        let gy = Math.round((-(hy - (canvasPoints.height/2)))*0.005*buttonValue*1000)/1000;
         let point = {};
 
         point.gx = gx;
         point.gy = gy;
 
+
         points[pointCount] = point;
 
+        sumbitArea(gx,gy);
         contextPoints.beginPath();
         contextPoints.fillStyle = 'red';
         contextPoints.arc(hx,hy,2,0, 2*Math.PI,true);

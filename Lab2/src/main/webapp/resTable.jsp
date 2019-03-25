@@ -13,14 +13,6 @@
 
     List<Result> results = (List<Result>) request.getAttribute("Results");
     if(results != null && !results.isEmpty()){
-
-        for (Result result: results){
-            System.out.println("X = " + result.getX());
-            System.out.println("Y = " + result.getY());
-            System.out.println("R = " + result.getR());
-            System.out.println("Result = " + result.isResult());
-        }
-
         for(Result result : results){
             out.println("<tr>");
             out.println("<td>" + result.getX() + "</td>");
