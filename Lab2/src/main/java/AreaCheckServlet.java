@@ -12,11 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AreaCheckServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         double x = Double.parseDouble(request.getParameter("X"));
         double y = Double.parseDouble(request.getParameter("Y"));
@@ -42,7 +39,7 @@ public class AreaCheckServlet extends HttpServlet {
         request.setAttribute("Results", session.getAttribute("Results"));
 
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/resTable.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("resTable.jsp");
         dispatcher.forward(request, response);
     }
 

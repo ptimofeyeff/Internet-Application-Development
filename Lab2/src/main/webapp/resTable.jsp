@@ -11,16 +11,13 @@
 <%
     List<Result> results = (List<Result>) request.getAttribute("Results");
     if(results != null && !results.isEmpty()){
-        for(Result result : results){
-            out.println("<tr>");
-            out.println("<td>" + result.getX() + "</td>");
-            out.println("<td>" + result.getY() + "</td>");
-            out.println("<td>" + result.getR() + "</td>");
-            out.println("<td>" + result.isResult() + "</td>");
-            out.print("</tr>");
-        }
-    }else {
-        System.out.println(results);
-    }
-%>
+        for(Result result : results){ %>
+            <tr>
+            <td>  <%=result.getX()%> </td>
+            <td>  <%=result.getY()%> </td>
+            <td>  <%=result.getR()%> </td>
+            <td>  <%=result.isResult()%> </td>
+            </tr>
+        <%}
+    }%>
 
