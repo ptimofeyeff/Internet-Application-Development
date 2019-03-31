@@ -1,5 +1,3 @@
-<%@ page import="model.Result" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8"  %>
 <html lang="ru">
 <head>
