@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    List<Result> results = (List<Result>) request.getAttribute("Results");
+    List<Result> results = (List<Result>) session.getAttribute("Results");
     if(results != null && !results.isEmpty()){
         for(Result result : results){ %>
             <tr>

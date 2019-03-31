@@ -11,11 +11,11 @@ public class MyFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
 
-        if(req.getRequestURI().equals("/Lab2/") || req.getRequestURI().equals("/Lab2/ControllerServlet")) {
+  /*      if(req.getRequestURI().equals("/Lab2/") || req.getRequestURI().equals("/Lab2/ControllerServlet")) {
             super.doFilter(req, res, chain);
         }else {
             res.sendError(404);
-        }
+        }*/
     }
 }
 

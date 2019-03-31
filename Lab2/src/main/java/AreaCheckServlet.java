@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AreaCheckServlet extends HttpServlet {
@@ -21,22 +21,19 @@ public class AreaCheckServlet extends HttpServlet {
 
         boolean result = checkForm(x,y,radius);
 
-        Model model = Model.getInstance();
 
 
+        List<Result> results;
         HttpSession session = request.getSession();
-        if (session.getAttribute("Results") != null){
-           List<Result> results = (List<Result>) session.getAttribute("Results");
-          //  System.out.println(results);
+
+        if (session.getAttribute("Results") == null){
+            results = new ArrayList<Result>();
+            results.add(new Result(x,y,radius,result));
         }else {
-            System.out.println("В сессии ничего не было");
+            results = (List<Result>) session.getAttribute("Results");
+            results.add(new Result(x,y,radius,result));
         }
-        model.add(new Result(x, y, radius, result));
-        List<Result> tmp = model.getModel();
-        session.setAttribute("Results", tmp);
-
-
-        request.setAttribute("Results", session.getAttribute("Results"));
+        session.setAttribute("Results", results);
 
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("resTable.jsp");
