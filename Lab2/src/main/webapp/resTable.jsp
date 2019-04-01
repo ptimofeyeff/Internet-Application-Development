@@ -1,5 +1,7 @@
 <%@ page import="model.Result" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %><%--
   Created by IntelliJ IDEA.
   User: Pavel
   Date: 25.03.2019
@@ -7,6 +9,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 
 <%
     List<Result> results = (List<Result>) session.getAttribute("Results");
@@ -17,6 +20,8 @@
             <td>  <%=result.getY()%> </td>
             <td>  <%=result.getR()%> </td>
             <td>  <%=result.isResult()%> </td>
+            <td>  <%=result.getCurrentTime()%> </td>
+            <td>  <%=result.getScriptTime()%> </td>
             </tr>
         <%}
     }%>

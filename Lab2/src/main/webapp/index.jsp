@@ -58,6 +58,8 @@
                     <th> Y </th>
                     <th> R </th>
                     <th> Result </th>
+                    <th> Current time </th>
+                    <th> Script time [ns] </th>
                 </tr>
             </thead>
             <tbody id="resTable">

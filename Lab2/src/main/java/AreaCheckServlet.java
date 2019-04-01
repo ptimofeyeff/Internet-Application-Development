@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AreaCheckServlet extends HttpServlet {
@@ -30,17 +32,20 @@ public class AreaCheckServlet extends HttpServlet {
         int radius = Integer.parseInt(request.getParameter("R"));
 
         boolean result = checkForm(x,y,radius);
-
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("kk:mm:ss");
+        String currentTime = simpleDateFormat.format(new Date());
 
         List<Result> results;
         HttpSession session = request.getSession();
 
         if (session.getAttribute("Results") == null){
             results = new ArrayList<Result>();
-            results.add(new Result(x,y,radius,result));
+            results.add(new Result(x,y,radius,result, currentTime,
+                    System.nanoTime() - (Long) session.getAttribute("startTime")));
         }else {
             results = (List<Result>) session.getAttribute("Results");
-            results.add(new Result(x,y,radius,result));
+            results.add(new Result(x,y,radius,result, currentTime,
+                    System.nanoTime() - (Long) session.getAttribute("startTime")));
         }
         session.setAttribute("Results", results);
 
