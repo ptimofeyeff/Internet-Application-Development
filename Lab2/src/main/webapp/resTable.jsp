@@ -1,14 +1,6 @@
 <%@ page import="model.Result" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %><%--
-  Created by IntelliJ IDEA.
-  User: Pavel
-  Date: 25.03.2019
-  Time: 10:37
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 
 
 <%

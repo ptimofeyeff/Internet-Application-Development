@@ -1,7 +1,5 @@
 package model;
 
-
-
 public class Result {
     private double x;
     private double y;
