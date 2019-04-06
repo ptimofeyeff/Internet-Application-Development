@@ -6,7 +6,7 @@ const options = {
     weekday: 'long',
     timezone: 'UTC',
     hour: 'numeric',
-    minute: 'numeric',
+    minute: 'numeric'
 };
 
 function dateTick(){
