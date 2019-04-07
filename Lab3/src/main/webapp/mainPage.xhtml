@@ -8,19 +8,20 @@
 </h:head>
 
 <h:body>
-    <h:form>
+    <h:form prependId="false">
 
         <div>
             Изменение X:
-            <h:commandButton value="-3"/>
-            <h:commandButton value="-2"/>
-            <h:commandButton value="-1"/>
-            <h:commandButton value="0"/>
-            <h:commandButton value="1"/>
-            <h:commandButton value="2"/>
-            <h:commandButton value="3"/>
-            <h:commandButton value="4"/>
-            <h:commandButton value="5"/>
+            <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="-3"/>
+            <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="-2"/>
+            <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="-1"/>
+            <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="0"/>
+            <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="1"/>
+            <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="2"/>
+            <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="3"/>
+            <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="4"/>
+            <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="5"/>
+
         </div>
         <div>
           Изменение Y (-3...3)
@@ -31,6 +32,7 @@
                          validatorMessage="Неверное значение Y"
                          requiredMessage="Не указано значение Y">
                 <f:validateDoubleRange minimum="-3" maximum="3"/>
+                <f:convertNumber/>
             </h:inputText>
             <h:message for="y" styleClass="error"/>
         </div>
@@ -51,6 +53,8 @@
             <h:selectBooleanCheckbox class = "y">
                 <h:outputText value="5"/>
             </h:selectBooleanCheckbox>
+            <div class="errorRadius">
+            </div>
         </div>
 
         <div>
@@ -66,6 +70,7 @@
         <canvas id="points" width="450" height="450"/>
     </div>
     <script src="js/area.js"></script>
+    <script src="js/mainPageScripts.js"></script>
 </h:body>
 
 </html>
