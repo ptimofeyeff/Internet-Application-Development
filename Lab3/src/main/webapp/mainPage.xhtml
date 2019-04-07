@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
     <title>Main Page</title>
+    <link rel="stylesheet" href="css/mainPage.css"/>
 </h:head>
 
 <h:body>
@@ -21,37 +23,44 @@
             <h:commandButton value="5"/>
         </div>
         <div>
-            <h:outputLabel for="y" value="Изменение Y (-3...3)"/>
-            <h:inputText id="y"/>
+          Изменение Y (-3...3)
+            <h:inputText value="#{pointBean.y}"
+                         id="y"
+                         required="true"
+                         converterMessage="Неверное значение Y"
+                         validatorMessage="Неверное значение Y"
+                         requiredMessage="Не указано значение Y">
+                <f:validateDoubleRange minimum="-3" maximum="3"/>
+            </h:inputText>
+            <h:message for="y" styleClass="error"/>
         </div>
         <div>
             Изменениe R:
-            <h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox class = "y">
                 <h:outputText value="1"/>
             </h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox class = "y">
                 <h:outputText value="2"/>
             </h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox class = "y">
                 <h:outputText value="3"/>
             </h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox class = "y">
                 <h:outputText value="4"/>
             </h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox>
+            <h:selectBooleanCheckbox class = "y">
                 <h:outputText value="5"/>
             </h:selectBooleanCheckbox>
         </div>
 
         <div>
-            <h:commandButton value="Проверить"/>
-        </div>
-
-        <div>
-            <h:commandButton action="startPage" value="Стартовая страница" />
+            <h:commandButton id="submitButton" value="Проверить"/>
         </div>
     </h:form>
 
+    <h:form>
+        <h:commandButton action="startPage" value="Стартовая страница"/>
+    </h:form>
     <div class="area">
         <canvas id="area" width="450" height="450"/>
         <canvas id="points" width="450" height="450"/>

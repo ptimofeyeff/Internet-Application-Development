@@ -116,3 +116,61 @@ context.fillText("Y", 235,15);
 context.fillText("X", 435,248);
 
 
+document.addEventListener("DOMContentLoaded", function(){
+    canvasPoints.addEventListener("click", paintPoint);
+});
+
+
+
+function paintPoint(){
+    if (buttonValue !== null){
+
+        let hx = event.offsetX;
+        let hy = event.offsetY;
+        let gx =  Math.round((hx - (canvasPoints.width/2))*0.005*buttonValue*1000)/1000;
+        let gy = Math.round((-(hy - (canvasPoints.height/2)))*0.005*buttonValue*1000)/1000;
+        let point = {};
+
+        point.gx = gx;
+        point.gy = gy;
+
+
+        points[pointCount] = point;
+
+        sumbitArea(gx,gy);
+        contextPoints.beginPath();
+        contextPoints.fillStyle = 'red';
+        contextPoints.arc(hx,hy,2,0, 2*Math.PI,true);
+        contextPoints.stroke();
+        contextPoints.fill();
+        error.innerHTML = "";
+        pointCount++;
+
+    }else {
+        error.innerHTML = "Невозможно определить координаты точки, " + "\n" +
+            "выберети значение R";
+    }
+}
+
+function repaintPoint(point) {
+
+    let gx = point.gx;
+    let gy = point.gy;
+
+    let hx = gx / (0.005 * buttonValue) + 225;
+    let hy = 225 - (gy / (0.005 * buttonValue));
+
+    contextPoints.beginPath();
+    contextPoints.fillStyle = 'red';
+    contextPoints.arc(hx, hy, 2, 0, 2 * Math.PI, true);
+    contextPoints.stroke();
+    contextPoints.fill();
+}
+
+
+function repaintPoints() {
+    contextPoints.clearRect(0, 0, canvasPoints.width, canvasPoints.height);
+    points.forEach( (point) => repaintPoint(point));
+}
+
+
