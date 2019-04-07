@@ -8,10 +8,11 @@
 </h:head>
 
 <h:body>
-    <h:form prependId="false">
+    <h:form prependId="false" styleClass="formData">
 
         <div>
             Изменение X:
+
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="-3"/>
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="-2"/>
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="-1"/>
@@ -20,7 +21,8 @@
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="2"/>
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="3"/>
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="4"/>
-            <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="5"/>
+            <h:commandButton id="asdas" onclick="clickButton(event, this)" styleClass="button" value="5"/>
+            <h:inputHidden id="rVal" value="#{pointBean.y}"/>
 
         </div>
         <div>
@@ -38,7 +40,7 @@
         </div>
         <div>
             Изменениe R:
-            <h:selectBooleanCheckbox class = "y">
+            <h:selectBooleanCheckbox class = "y" value="true">
                 <h:outputText value="1"/>
             </h:selectBooleanCheckbox>
             <h:selectBooleanCheckbox class = "y">

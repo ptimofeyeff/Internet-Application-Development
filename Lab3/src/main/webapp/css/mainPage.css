@@ -1,3 +1,11 @@
-.error{
+.error, .errorRadius{
     color: red;
+}
+
+.button {
+    background: aqua;
+}
+
+.selectButton{
+    background: #3233ff;
 }
