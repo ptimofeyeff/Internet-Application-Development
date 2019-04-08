@@ -8,7 +8,7 @@
 </h:head>
 
 <h:body>
-    <h:form prependId="false" styleClass="formData">
+    <h:form id='form' prependId="false" >
 
         <div>
             Изменение X:
@@ -22,19 +22,19 @@
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="3"/>
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="4"/>
             <h:commandButton id="asdas" onclick="clickButton(event, this)" styleClass="button" value="5"/>
-            <h:inputHidden id="X" value="#{pointBean.x}"/>
+            <h:inputHidden id="X" value="#{pointBean.newPoint.x}"/>
 
         </div>
         <div>
           Изменение Y (-3...3)
-            <h:inputText value="#{pointBean.y}"
+            <h:inputText value="#{pointBean.newPoint.y}"
                          id="Y"
                          required="true"
                          converterMessage="Неверное значение Y"
                          validatorMessage="Неверное значение Y"
                          requiredMessage="Не указано значение Y">
                 <f:validateDoubleRange minimum="-3" maximum="3"/>
-                <f:convertNumber/>
+                <f:convertNumber maxFractionDigits="3"/>
             </h:inputText>
             <h:message for="Y" styleClass="error"/>
         </div>
@@ -55,13 +55,37 @@
             <h:selectBooleanCheckbox class = "r"  onclick="selectCheckbox()">
                 <h:outputText value="5"/>
             </h:selectBooleanCheckbox>
-            <h:inputHidden id="R" value="#{pointBean.r}"/>
+            <h:inputHidden id="R" value="#{pointBean.newPoint.r}"/>
         </div>
 
         <div>
-            <h:commandButton id="submitButton" value="Проверить"/>
+            <h:commandButton action="#{pointBean.addPoint()}" id="submitButton" value="Проверить">
+                <f:ajax execute="form" render="resultTable"/>
+            </h:commandButton>
         </div>
     </h:form>
+
+    <h:panelGroup id="resultTable">
+        <h:dataTable value="#{pointBean.points}"  var="point">
+            <h:column>
+                <f:facet name="header">X</f:facet>
+                #{point.x}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Y</f:facet>
+                #{point.y}
+            </h:column>
+            <h:column>
+                <f:facet name="header">R</f:facet>
+                #{point.r}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Result</f:facet>
+                #{point.result}
+            </h:column>
+
+        </h:dataTable>
+    </h:panelGroup>
 
     <h:form>
         <h:commandButton action="startPage" value="Стартовая страница"/>
