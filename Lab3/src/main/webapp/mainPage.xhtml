@@ -22,13 +22,13 @@
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="3"/>
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="4"/>
             <h:commandButton id="asdas" onclick="clickButton(event, this)" styleClass="button" value="5"/>
-            <h:inputHidden id="rVal" value="#{pointBean.y}"/>
+            <h:inputHidden id="X" value="#{pointBean.x}"/>
 
         </div>
         <div>
           Изменение Y (-3...3)
             <h:inputText value="#{pointBean.y}"
-                         id="y"
+                         id="Y"
                          required="true"
                          converterMessage="Неверное значение Y"
                          validatorMessage="Неверное значение Y"
@@ -36,27 +36,26 @@
                 <f:validateDoubleRange minimum="-3" maximum="3"/>
                 <f:convertNumber/>
             </h:inputText>
-            <h:message for="y" styleClass="error"/>
+            <h:message for="Y" styleClass="error"/>
         </div>
         <div>
             Изменениe R:
-            <h:selectBooleanCheckbox class = "y" value="true">
+            <h:selectBooleanCheckbox class = "r" value="true" onclick="selectCheckbox()">
                 <h:outputText value="1"/>
             </h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox class = "y">
+            <h:selectBooleanCheckbox class = "r"  onclick="selectCheckbox()">
                 <h:outputText value="2"/>
             </h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox class = "y">
+            <h:selectBooleanCheckbox class = "r"  onclick="selectCheckbox()">
                 <h:outputText value="3"/>
             </h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox class = "y">
+            <h:selectBooleanCheckbox class = "r"  onclick="selectCheckbox()">
                 <h:outputText value="4"/>
             </h:selectBooleanCheckbox>
-            <h:selectBooleanCheckbox class = "y">
+            <h:selectBooleanCheckbox class = "r"  onclick="selectCheckbox()">
                 <h:outputText value="5"/>
             </h:selectBooleanCheckbox>
-            <div class="errorRadius">
-            </div>
+            <h:inputHidden id="R" value="#{pointBean.r}"/>
         </div>
 
         <div>

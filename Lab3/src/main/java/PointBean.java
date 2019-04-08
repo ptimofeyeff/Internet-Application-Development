@@ -5,6 +5,8 @@ import javax.faces.bean.ManagedBean;
 @Data
 @ManagedBean
 public class PointBean {
+    private double x;
     private double y;
+    private double r;
 
 }
