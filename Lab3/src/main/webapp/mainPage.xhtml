@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
@@ -27,14 +27,17 @@
         </div>
         <div>
           Изменение Y (-3...3)
-            <h:inputText value="#{pointBean.newPoint.y}"
-                         id="Y"
-                         required="true"
-                         converterMessage="Неверное значение Y"
-                         validatorMessage="Неверное значение Y"
-                         requiredMessage="Не указано значение Y">
-                <f:validateDoubleRange minimum="-3" maximum="3"/>
-                <f:convertNumber maxFractionDigits="3"/>
+            <h:inputText  value="#{pointBean.newPoint.y}"
+                          id="Y"
+                          required="true"
+                          requiredMessage="Введите значение Y"
+                          converterMessage="Y должен быть числом"
+                          validatorMessage="Y должен принадлежать промежутку (-3..3)"
+
+                        >
+                <f:converter converterId="yConverter"/>
+                <f:validator validatorId="yValidator"/>
+
             </h:inputText>
             <h:message for="Y" styleClass="error"/>
         </div>
