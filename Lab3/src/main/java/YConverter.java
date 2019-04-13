@@ -1,6 +1,7 @@
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
 
@@ -10,11 +11,16 @@ public class YConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        value = value.trim().replace(",",".");
-        double y = Double.parseDouble(value);
-        //noinspection SuspiciousNameCombination
-        y = roundTo3(y);
-        return y;
+        value = value.trim();
+        if(!value.equals("")) {
+            value = value.replace(",",".");
+            double y = Double.parseDouble(value);
+            //noinspection SuspiciousNameCombination
+            y = roundTo3(y);
+            return y;
+        }else {
+            throw new ConverterException();
+        }
     }
 
     @Override

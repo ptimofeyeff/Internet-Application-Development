@@ -27,13 +27,13 @@
         </div>
         <div>
           Изменение Y (-3...3)
-            <h:inputText  value="#{pointBean.newPoint.y}"
+            <h:inputText  label="Изменение Y (-3...3)"
+                          value="#{pointBean.newPoint.y}"
                           id="Y"
                           required="true"
                           requiredMessage="Введите значение Y"
                           converterMessage="Y должен быть числом"
                           validatorMessage="Y должен принадлежать промежутку (-3..3)"
-
                         >
                 <f:converter converterId="yConverter"/>
                 <f:validator validatorId="yValidator"/>
