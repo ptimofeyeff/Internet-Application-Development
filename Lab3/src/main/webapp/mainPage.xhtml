@@ -39,7 +39,7 @@
                 <f:validator validatorId="yValidator"/>
 
             </h:inputText>
-            <h:message for="Y" styleClass="error"/>
+            <h:message id="yMessage" for="Y" styleClass="error"/>
         </div>
         <div>
             Изменениe R:
@@ -63,11 +63,8 @@
 
         <div>
             <h:commandButton action="#{pointBean.addPoint()}" id="submitButton" value="Проверить">
-                <f:ajax execute="form" render="resultTable"/>
+                <f:ajax execute="form" render="resultTable yMessage"/>
             </h:commandButton>
-        </div>
-        <div>
-            <h:commandButton value="testButton"/>
         </div>
     </h:form>
 
