@@ -11,14 +11,18 @@ public class YConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        value = value.trim();
-        if(!value.equals("")) {
-            value = value.replace(",",".");
-            double y = Double.parseDouble(value);
-            //noinspection SuspiciousNameCombination
-            y = roundTo3(y);
-            return y;
-        }else {
+        try {
+            value = value.trim();
+            if(!value.equals("")) {
+                value = value.replace(",",".");
+                double y = Double.parseDouble(value);
+                //noinspection SuspiciousNameCombination
+                y = roundTo3(y);
+                return y;
+            }else {
+                throw new ConverterException();
+            }
+        }catch (NumberFormatException e){
             throw new ConverterException();
         }
     }
