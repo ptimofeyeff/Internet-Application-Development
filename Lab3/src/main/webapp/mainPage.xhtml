@@ -94,8 +94,43 @@
         <h:commandButton action="startPage" value="Стартовая страница"/>
     </h:form>
     <div class="area">
-        <canvas id="area" width="450" height="450"/>
-        <canvas id="points" width="450" height="450"/>
+        <svg width="450" height="450">
+            <rect fill="blue" width="100" height="200" x="125" y="25"/>
+            <polyline points="225,225 425,225 225, 325, 225 225" fill="blue"/>
+            <path fill="blue" d="M25,225 A200,200 0 0,0 225,425 L225,225"/>
+
+            <!--Вертикальная ось и все, что на ней-->
+            <line x1="5" y1="225" x2="445" y2="225" stroke="black" stroke-width="2" />
+            <polyline points="435,220 449,225 435,230"/>
+            <line x1="221" y1="125" x2="229" y2="125" stroke="black" stroke-width="2"/>
+            <line x1="221" y1="25" x2="229" y2="25" stroke="black" stroke-width="2"/>
+            <line x1="221" y1="325" x2="229" y2="325" stroke="black" stroke-width="2"/>
+            <line x1="221" y1="425" x2="229" y2="425" stroke="black" stroke-width="2"/>
+
+            <!--Горизонтальная ось и все, что на ней-->
+            <line x1="225" y1="5" x2="225" y2="445" stroke="black" stroke-width="2" />
+            <polyline points="220,10 225,0 230,10"/>
+            <line x1="125" y1="221" x2="125" y2="229" stroke="black" stroke-width="2"/>
+            <line x1="25" y1="221" x2="25" y2="229" stroke="black" stroke-width="2"/>
+            <line x1="325" y1="221" x2="325" y2="229" stroke="black" stroke-width="2"/>
+            <line x1="425" y1="221" x2="425" y2="229" stroke="black" stroke-width="2"/>
+
+
+            <text x="97" y="220">-R/2</text>
+            <text x="230" y="125">R/2</text>
+            <text x="230" y="332">-R/2</text>
+            <text x="332" y="220">R/2</text>
+
+            <text x="25" y="220">-R</text>
+            <text x="230" y="428">-R</text>
+            <text x="230" y="35">R</text>
+            <text x="412" y="220">R</text>
+
+
+            <text x="235" y="15">Y</text>
+            <text x="435" y="248">X</text>
+
+        </svg>
     </div>
     <script src="js/area.js"></script>
     <script src="js/mainPageScripts.js"></script>
