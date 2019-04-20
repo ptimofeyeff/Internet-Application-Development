@@ -9,3 +9,7 @@
 .selectButton{
     background: #3233ff;
 }
+
+#submitPoint{
+    visibility: hidden;
+}

@@ -1,42 +1,19 @@
-let canvas = document.querySelector("#area");
-let context = canvas.getContext("2d");
+const area = document.querySelector("#area");
 
-let canvasPoints = document.querySelector("#points");
-let contextPoints = canvasPoints.getContext("2d");
+function paintPoint(event){
 
-let points = [];
-let pointCount = 0;
+    let radius = document.querySelector('#R').value;
 
+    let svgX = event.offsetX;
+    let svgY = event.offsetY;
+    let graphX =  Math.round((svgX - (area.width.baseVal.value/2))*0.005*radius*1000)/1000;
+    let graphY = Math.round((-(svgY - (area.height.baseVal.value/2)))*0.005*radius*1000)/1000;
 
-document.addEventListener("DOMContentLoaded", function(){
-    canvasPoints.addEventListener("click", paintPoint);
-});
+    document.querySelector("#pointX").value = graphX;
+    document.querySelector("#pointY").value = graphY;
+    document.querySelector("#pointR").value = radius;
 
-
-
-function paintPoint(){
-
-
-    let hx = event.offsetX;
-    let hy = event.offsetY;
-    let gx =  Math.round((hx - (canvasPoints.width/2))*0.005*document.querySelector('#R').value*1000)/1000;
-    let gy = Math.round((-(hy - (canvasPoints.height/2)))*0.005*document.querySelector('#R').value*1000)/1000;
-    let point = {};
-
-    point.gx = gx;
-    point.gy = gy;
-
-
-    points[pointCount] = point;
-
-    sumbitArea(gx,gy);
-    contextPoints.beginPath();
-    contextPoints.fillStyle = 'red';
-    contextPoints.arc(hx,hy,2,0, 2*Math.PI,true);
-    contextPoints.stroke();
-    contextPoints.fill();
-    pointCount++;
-
+    document.querySelector("#submitPoint").click();
 }
 
 function repaintPoint(point) {
