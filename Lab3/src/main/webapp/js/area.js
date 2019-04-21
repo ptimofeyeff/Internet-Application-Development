@@ -1,5 +1,6 @@
 const graph = document.querySelector("#graph");
-
+let currentX, currentY;
+let pointCount = -1;
 function addPoint(event){
     let radius = document.querySelector('#R').value;
 
@@ -13,53 +14,22 @@ function addPoint(event){
     document.querySelector("#pointR").value = radius;
     document.querySelector("#submitPoint").click();
 
-
-    paintPoint(svgX, svgY);
+    currentX = svgX;
+    currentY = svgY;
+    pointCount += 4;
+    setTimeout(paintPoint, 100);
 }
 
 
-function paintPoint(x, y){
+function paintPoint(){
+    console.log(2);
     const svgNS = "http://www.w3.org/2000/svg";
     let point = document.createElementNS(svgNS,"circle");
-
-    point.setAttribute("r", "3");
-    point.setAttribute("cx", x);
-    point.setAttribute("cy", y);
-    point.setAttribute("fill", "red");
+    point.setAttribute("r", "2");
+    point.setAttribute("cx", currentX);
+    point.setAttribute("cy", currentY);
+    point.setAttribute("fill",
+        document.querySelector("#resultTable").getElementsByTagName("td")[pointCount].innerText === "true" ? "yellow" : "red");
     graph.appendChild(point);
-}
-
-function paintPointonCanvas(x, y){
-   let contextPoints = canvasPoints.getContext("2d");
-
-   contextPoints.beginPath();
-   contextPoints.fillStyle = 'red';
-   contextPoints.arc(x, y, 2,0,2*Math.PI, true);
-   contextPoints.stroke();
-   contextPoints.fill();
 
 }
-
-
-function repaintPoint(point) {
-
-    let gx = point.gx;
-    let gy = point.gy;
-
-    let hx = gx / (0.005 * document.querySelector('#R').value) + 225;
-    let hy = 225 - (gy / (0.005 * document.querySelector('#R').value));
-
-    contextPoints.beginPath();
-    contextPoints.fillStyle = 'red';
-    contextPoints.arc(hx, hy, 2, 0, 2 * Math.PI, true);
-    contextPoints.stroke();
-    contextPoints.fill();
-}
-
-
-function repaintPoints() {
-    contextPoints.clearRect(0, 0, canvasPoints.width, canvasPoints.height);
-    points.forEach( (point) => repaintPoint(point));
-}
-
-

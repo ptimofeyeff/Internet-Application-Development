@@ -63,33 +63,33 @@
 
         <div>
             <h:commandButton action="#{pointBean.addPoint()}" id="submitButton" value="Проверить">
-                <f:ajax execute="form" render="resultTable yMessage"/>
+                <f:ajax execute="form" render="resultTable yMessage area"/>
             </h:commandButton>
         </div>
     </h:form>
+    <div id="test">
+        <h:panelGroup id="resultTable">
+            <h:dataTable value="#{pointBean.points}"  var="point">
+                <h:column>
+                    <f:facet name="header">X</f:facet>
+                    ${point.x}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Y</f:facet>
+                    ${point.y}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">R</f:facet>
+                    ${point.r}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Result</f:facet>
+                    ${point.result}
+                </h:column>
 
-    <h:panelGroup id="resultTable">
-        <h:dataTable value="#{pointBean.points}"  var="point">
-            <h:column>
-                <f:facet name="header">X</f:facet>
-                ${point.x}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Y</f:facet>
-                ${point.y}
-            </h:column>
-            <h:column>
-                <f:facet name="header">R</f:facet>
-                ${point.r}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Result</f:facet>
-                ${point.result}
-            </h:column>
-
-        </h:dataTable>
+            </h:dataTable>
     </h:panelGroup>
-
+    </div>
     <h:form>
         <h:commandButton action="startPage" value="Стартовая страница"/>
     </h:form>
