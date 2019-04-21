@@ -25,6 +25,7 @@ function paintButton(buttons, targetButton) {
 
 
 function selectCheckbox() {
+    // TODO добавить невозможность убрать все галочки
     let checkboxes = document.getElementsByClassName('r');
     let r = 0;
     for (let i = 0; i <checkboxes.length; i++) {
@@ -34,6 +35,7 @@ function selectCheckbox() {
         }
     }
     document.querySelector('#R').value = r;
+    repaintPoints();
 }
 
 
