@@ -2,11 +2,11 @@ import lombok.Data;
 import model.Result;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import java.util.ArrayList;
 import java.util.List;
 
-@ViewScoped
+@SessionScoped
 @Data
 @ManagedBean
 public class PointBean {
@@ -16,7 +16,6 @@ public class PointBean {
 
 
     public void addPoint() {
-        newPoint.setResult();
         points.add(newPoint);
         newPoint = new Result();
 
