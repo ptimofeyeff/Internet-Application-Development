@@ -1,4 +1,5 @@
-package jpa;
+package jpa.services;
+import jpa.dao.ResultDao;
 import model.Result;
 
 import java.util.List;

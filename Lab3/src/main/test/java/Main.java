@@ -1,14 +1,12 @@
-import jpa.ResultService;
+import jpa.services.ResultService;
 import model.Result;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Result result1 = new Result(2,3,4);
-        Result result2 = new Result(-2,3,4);
-
         ResultService resultService = new ResultService();
-        resultService.saveResult(result1);
-        resultService.saveResult(result2);
-
+        List<Result> results = resultService.findAllResults();
+        System.out.println(results);
     }
 }

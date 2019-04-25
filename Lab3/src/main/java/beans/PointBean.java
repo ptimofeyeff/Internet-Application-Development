@@ -1,3 +1,5 @@
+package beans;
+
 import lombok.Data;
 import model.Result;
 

@@ -1,4 +1,4 @@
-package jpa;
+package jpa.utils;
 
 import model.Result;
 import org.hibernate.SessionFactory;

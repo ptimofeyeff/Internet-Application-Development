@@ -1,5 +1,6 @@
-package jpa;
+package jpa.dao;
 
+import jpa.utils.HibernateSessionFactoryUtil;
 import model.Result;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -38,6 +39,7 @@ public class ResultDao {
     }
 
     public List<Result> findAll(){
-        return (List<Result>) HibernateSessionFactoryUtil.getSessionFactory().openSession();
+       return (List<Result>) HibernateSessionFactoryUtil.getSessionFactory()
+               .openSession().createQuery("FROM model.Result").list();
     }
 }
