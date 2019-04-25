@@ -86,6 +86,10 @@
                     <f:facet name="header">Result</f:facet>
                     ${point.hit}
                 </h:column>
+                <h:column>
+                    <f:facet name="header">CurrentTime</f:facet>
+                    ${point.currentTime.hours}:${point.currentTime.minutes}:${point.currentTime.seconds}
+                </h:column>
 
             </h:dataTable>
     </h:panelGroup>

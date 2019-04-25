@@ -21,6 +21,7 @@ public class PointBean {
 
     public void addPoint() {
         newPoint.checkHit();
+        newPoint.setCurrentTime();
         points.add(newPoint);
         resultService.saveResult(newPoint);
         newPoint = new Result();
