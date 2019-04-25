@@ -17,6 +17,16 @@ public class ResultDao {
         session.close();
     }
 
+    public void saveAll(List<Result> results){
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        for(Result result : results){
+            session.save(result);
+        }
+        transaction.commit();
+        session.close();
+    }
+
     public Result findById(int id){
         return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Result.class, id);
     }

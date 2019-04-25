@@ -30,4 +30,8 @@ public class ResultService {
     public List<Result> findAllResults(){
         return resultDao.findAll();
     }
+
+    public void saveAllResults(List<Result> results){
+        resultDao.saveAll(results);
+    }
 }
