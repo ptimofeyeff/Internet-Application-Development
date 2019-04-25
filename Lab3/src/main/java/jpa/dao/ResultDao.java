@@ -48,6 +48,10 @@ public class ResultDao {
         session.close();
     }
 
+    public void deleteAll(){
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    }
+
     public List<Result> findAll(){
        return (List<Result>) HibernateSessionFactoryUtil.getSessionFactory()
                .openSession().createQuery("FROM model.Result").list();
