@@ -133,7 +133,10 @@
 
             <text x="235" y="15">Y</text>
             <text x="435" y="248">X</text>
-
+            <ui:repeat value="#{pointBean.points}" var="point">
+                <circle r="2" cx="#{point.x/(0.005*point.r)+225}"
+                        cy="#{225 - ((point.y)/(0.005*point.r))}" fill="#{point.hit eq true ? 'yellow' : 'red'}"/>
+            </ui:repeat>
         </svg>
     </h:panelGroup>
 
@@ -142,9 +145,11 @@
         <p:inputHidden id="pointY" value="#{pointBean.newPoint.y}"/>
         <p:inputHidden id="pointR" value="#{pointBean.newPoint.r}"/>
         <h:commandButton action="#{pointBean.addPoint()}" id="submitPoint" update="resultTable">
-            <f:ajax execute="pointForm" render="resultTable"/>
+            <f:ajax execute="pointForm" render="resultTable area"/>
         </h:commandButton>
     </h:form>
+
+
 
     <script src="js/area.js"></script>
     <script src="js/mainPageScripts.js"></script>

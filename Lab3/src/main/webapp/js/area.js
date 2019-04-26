@@ -21,7 +21,7 @@ function addPoint(event){
 
     pointCount += 4;
 
-    setTimeout(paintPoint, 100);
+    //setTimeout(paintPoint, 100);
 }
 
 
