@@ -6,10 +6,11 @@ import model.Result;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import java.util.ArrayList;
 import java.util.List;
 
-@SessionScoped
+@ViewScoped
 @Data
 @ManagedBean
 public class PointBean {

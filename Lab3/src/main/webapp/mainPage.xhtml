@@ -135,6 +135,7 @@
             <text x="435" y="248">X</text>
             <ui:repeat value="#{pointBean.points}" var="point">
                 <circle r="2" cx="#{point.x/(0.005*point.r)+225}"
+                        gx = "#{point.x}" gy="#{point.y}" gr="#{point.r}"
                         cy="#{225 - ((point.y)/(0.005*point.r))}" fill="#{point.hit eq true ? 'yellow' : 'red'}"/>
             </ui:repeat>
         </svg>

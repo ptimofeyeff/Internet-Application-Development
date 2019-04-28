@@ -35,7 +35,7 @@ function selectCheckbox() {
         }
     }
     document.querySelector('#R').value = r;
-   // repaintPoints();
+    repaintPoints();
 }
 
 
