@@ -58,12 +58,16 @@
             <h:selectBooleanCheckbox class = "r"  onclick="selectCheckbox()">
                 <h:outputText value="5"/>
             </h:selectBooleanCheckbox>
-            <h:inputHidden id="R" value="#{pointBean.newPoint.r}"/>
+            <h:message id="rMessage" for="R" styleClass="error"/>
+            <h:message id="rMessagePoint" for="pointR" styleClass="error"/>
+            <h:inputHidden id="R" value="#{pointBean.newPoint.r}" validatorMessage="Выберите значение R">
+                <f:validateDoubleRange minimum="1" maximum="15"/>
+            </h:inputHidden>
         </div>
 
         <div>
             <h:commandButton action="#{pointBean.addPoint()}" id="submitButton" value="Проверить">
-                <f:ajax execute="form" render="resultTable yMessage area test"/>
+                <f:ajax execute="form" render="resultTable yMessage area redraw rMessage"/>
             </h:commandButton>
         </div>
     </h:form>
@@ -140,13 +144,15 @@
     <h:form id="pointForm" prependId="false">
         <inputHidden xmlns:="http://java.sun.com/jsf/html" id="pointX" value="#{pointBean.newPoint.x}" />
         <inputHidden xmlns:="http://java.sun.com/jsf/html" id="pointY" value="#{pointBean.newPoint.y}"/>
-        <inputHidden xmlns:="http://java.sun.com/jsf/html" id="pointR" value="#{pointBean.newPoint.r}"/>
+        <inputHidden xmlns:="http://java.sun.com/jsf/html" id="pointR" value="#{pointBean.newPoint.r}" validatorMessage="Выберите значение R">
+            <f:validateDoubleRange minimum="1" maximum="15"/>
+        </inputHidden>
         <h:commandButton action="#{pointBean.addPoint()}" id="submitPoint" update="resultTable"   >
-            <f:ajax execute="pointForm" render="resultTable area test" onevent="repaintPoints()" />
+            <f:ajax execute="pointForm" render="resultTable area redraw rMessagePoint" onevent="repaintPoints()" />
         </h:commandButton>
     </h:form>
 
-    <p:outputPanel id="test">
+    <p:outputPanel id="redraw">
         <script type="text/javascript">
             function repaintPoints(){
                 let points = Array.from(document.getElementsByTagName("circle"));
