@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://primefaces.org/ui" xmlns:p="http://java.sun.com/jsf/html">
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://primefaces.org/ui" xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Main Page</title>
     <link rel="stylesheet" href="css/mainPage.css"/>
@@ -63,11 +63,10 @@
 
         <div>
             <h:commandButton action="#{pointBean.addPoint()}" id="submitButton" value="Проверить">
-                <f:ajax execute="form" render="resultTable yMessage area"/>
+                <f:ajax execute="form" render="resultTable yMessage area test"/>
             </h:commandButton>
         </div>
     </h:form>
-    <div id="test">
         <h:panelGroup id="resultTable">
             <h:dataTable value="#{pointBean.points}"  var="point">
                 <h:column>
@@ -90,20 +89,19 @@
                     <f:facet name="header">CurrentTime</f:facet>
                     ${point.currentTime.hours}:${point.currentTime.minutes}:${point.currentTime.seconds}
                 </h:column>
-
             </h:dataTable>
-    </h:panelGroup>
-    </div>
-    <h:form>
-        <h:commandButton action="startPage" value="Стартовая страница"/>
-    </h:form>
-    <h:panelGroup id="area">
-        <svg id="graph" width="450" height="450" onclick="addPoint(event)">
-            <rect fill="blue" width="100" height="200" x="125" y="25"/>
-            <polyline points="225,225 425,225 225, 325, 225 225" fill="blue"/>
-            <path fill="blue" d="M25,225 A200,200 0 0,0 225,425 L225,225"/>
+        </h:panelGroup>
+   <h:form>
+       <h:commandButton action="startPage" value="Стартовая страница"/>
+   </h:form>
 
-            <!--Вертикальная ось и все, что на ней-->
+   <h:panelGroup id="area">
+       <svg id="graph" width="450" height="450" onclick="addPoint(event)">
+           <rect fill="blue" width="100" height="200" x="125" y="25"/>
+           <polyline points="225,225 425,225 225, 325, 225 225" fill="blue"/>
+           <path fill="blue" d="M25,225 A200,200 0 0,0 225,425 L225,225"/>
+
+           <!--Вертикальная ось и все, что на ней-->
             <line x1="5" y1="225" x2="445" y2="225" stroke="black" stroke-width="2" />
             <polyline points="435,220 449,225 435,230"/>
             <line x1="221" y1="125" x2="229" y2="125" stroke="black" stroke-width="2"/>
@@ -119,7 +117,6 @@
             <line x1="325" y1="221" x2="325" y2="229" stroke="black" stroke-width="2"/>
             <line x1="425" y1="221" x2="425" y2="229" stroke="black" stroke-width="2"/>
 
-
             <text x="97" y="220">-R/2</text>
             <text x="230" y="125">R/2</text>
             <text x="230" y="332">-R/2</text>
@@ -130,30 +127,52 @@
             <text x="230" y="35">R</text>
             <text x="412" y="220">R</text>
 
-
             <text x="235" y="15">Y</text>
             <text x="435" y="248">X</text>
-            <ui:repeat value="#{pointBean.points}" var="point">
-                <circle r="2" cx="#{point.x/(0.005*point.r)+225}"
-                        gx = "#{point.x}" gy="#{point.y}" gr="#{point.r}"
-                        cy="#{225 - ((point.y)/(0.005*point.r))}" fill="#{point.hit eq true ? 'yellow' : 'red'}"/>
-            </ui:repeat>
+           <ui:repeat value="#{pointBean.points}" var="point">
+               <circle r="2" cx="#{point.x/(0.005*point.r)+225}"
+                       gx = "#{point.x}" gy="#{point.y}" gr="#{point.r}"
+                       cy="#{225 - ((point.y)/(0.005*point.r))}" fill="#{point.hit eq true ? 'yellow' : 'red'}"/>
+           </ui:repeat>
         </svg>
     </h:panelGroup>
 
     <h:form id="pointForm" prependId="false">
-        <p:inputHidden id="pointX" value="#{pointBean.newPoint.x}" />
-        <p:inputHidden id="pointY" value="#{pointBean.newPoint.y}"/>
-        <p:inputHidden id="pointR" value="#{pointBean.newPoint.r}"/>
-        <h:commandButton action="#{pointBean.addPoint()}" id="submitPoint" update="resultTable">
-            <f:ajax execute="pointForm" render="resultTable area"/>
+        <inputHidden xmlns:="http://java.sun.com/jsf/html" id="pointX" value="#{pointBean.newPoint.x}" />
+        <inputHidden xmlns:="http://java.sun.com/jsf/html" id="pointY" value="#{pointBean.newPoint.y}"/>
+        <inputHidden xmlns:="http://java.sun.com/jsf/html" id="pointR" value="#{pointBean.newPoint.r}"/>
+        <h:commandButton action="#{pointBean.addPoint()}" id="submitPoint" update="resultTable"   >
+            <f:ajax execute="pointForm" render="resultTable area test" onevent="repaintPoints()" />
         </h:commandButton>
     </h:form>
 
+    <p:outputPanel id="test">
+        <script type="text/javascript">
+            function repaintPoints(){
+                let points = Array.from(document.getElementsByTagName("circle"));
+                let currentRadius = Number(document.querySelector('#R').value);
+                if (currentRadius === 0) return;
+                points.forEach( (point) => repaintPoint(point, currentRadius) )
 
+            }
 
-    <script src="js/area.js"></script>
+            function repaintPoint(point, currentRadius){
+
+                let gx = point.getAttribute("gx");
+                let gy = point.getAttribute("gy");
+
+                let svgX = gx / (0.005 * currentRadius) + 225;
+                let svgY = 225 - (gy / (0.005 * currentRadius));
+
+                point.setAttribute("cx", svgX);
+                point.setAttribute("cy", svgY);
+            }
+            repaintPoints();
+        </script>
+    </p:outputPanel>
+
     <script src="js/mainPageScripts.js"></script>
+    <script src="js/points.js"></script>
 </h:body>
 
 </html>
