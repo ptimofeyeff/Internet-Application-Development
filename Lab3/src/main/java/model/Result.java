@@ -33,7 +33,7 @@ public class Result {
     public void checkHit(){
         isHit = ((x <= 0 && y >= 0 && x >= -r/2 && y <= r)
                 || (x >= 0 && y <= 0 && 2*y >= x - r) ||
-                ((Math.pow(x, 2) + Math.pow(y, 2) <= r) && y <= 0 && x <= 0));
+                ((Math.pow(x, 2) + Math.pow(y, 2) <= Math.pow(r,2)) && y <= 0 && x <= 0));
     }
 
     public void setCurrentTime() {

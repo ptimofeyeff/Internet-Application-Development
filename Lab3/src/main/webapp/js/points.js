@@ -12,11 +12,10 @@ function addPoint(event){
     document.querySelector("#submitPoint").click();
 }
 
-
 function repaintPoints(){
     let points = Array.from(document.getElementsByTagName("circle"));
-    let currentRadius = document.querySelector('#R').value;
-    if (currentRadius == 0) return;
+    let currentRadius = Number(document.querySelector('#R').value);
+    if (currentRadius === 0) return;
     points.forEach( (point) => repaintPoint(point, currentRadius) )
 
 }
