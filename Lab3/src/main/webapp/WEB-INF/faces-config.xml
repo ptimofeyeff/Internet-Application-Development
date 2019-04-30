@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+    http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <managed-bean>
+        <managed-bean-name>pointBean</managed-bean-name>
+        <managed-bean-class>beans.PointBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <validator>
+        <validator-id>yValidator</validator-id>
+        <validator-class>beans.YValidator</validator-class>
+    </validator>
+
+    <converter>
+        <converter-id>yConverter</converter-id>
+        <converter-class>beans.YConverter</converter-class>
+    </converter>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>toMain</from-outcome>
+            <to-view-id>/pages/mainPage.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>toStart</from-outcome>
+            <to-view-id>/pages/startPage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

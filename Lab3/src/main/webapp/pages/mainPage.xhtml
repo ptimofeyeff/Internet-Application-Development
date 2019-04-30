@@ -4,15 +4,13 @@
       xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://primefaces.org/ui" xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Main Page</title>
-    <link rel="stylesheet" href="css/mainPage.css"/>
+    <link rel="stylesheet" href="../css/mainPage.css"/>
 </h:head>
 
 <h:body>
     <h:form id='form' prependId="false" >
-
         <div>
             Изменение X:
-
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="-3"/>
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="-2"/>
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="-1"/>
@@ -21,9 +19,8 @@
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="2"/>
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="3"/>
             <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="4"/>
-            <h:commandButton id="asdas" onclick="clickButton(event, this)" styleClass="button" value="5"/>
+            <h:commandButton onclick="clickButton(event, this)" styleClass="button" value="5"/>
             <h:inputHidden id="X" value="#{pointBean.newPoint.x}"/>
-
         </div>
         <div>
           Изменение Y (-3...3)
@@ -39,7 +36,6 @@
                 <f:validator validatorId="yValidator"/>
 
             </h:inputText>
-            <h:message id="yMessage" for="Y" styleClass="error"/>
         </div>
         <div>
             Изменениe R:
@@ -58,16 +54,15 @@
             <h:selectBooleanCheckbox class = "r"  onclick="selectCheckbox()">
                 <h:outputText value="5"/>
             </h:selectBooleanCheckbox>
-            <h:message id="rMessage" for="R" styleClass="error"/>
-            <h:message id="rMessagePoint" for="pointR" styleClass="error"/>
             <h:inputHidden id="R" value="#{pointBean.newPoint.r}" validatorMessage="Выберите значение R">
                 <f:validateDoubleRange minimum="1" maximum="15"/>
             </h:inputHidden>
+            <h:messages id="message" styleClass="error"/>
         </div>
 
         <div>
             <h:commandButton action="#{pointBean.addPoint()}" id="submitButton" value="Проверить">
-                <f:ajax execute="form" render="resultTable yMessage area redraw rMessage"/>
+                <f:ajax execute="form" render="resultTable yMessage area redraw message"/>
             </h:commandButton>
         </div>
     </h:form>
@@ -96,7 +91,7 @@
             </h:dataTable>
         </h:panelGroup>
    <h:form>
-       <h:commandButton action="startPage" value="Стартовая страница"/>
+       <h:commandButton action="toStart" value="Стартовая страница"/>
    </h:form>
 
    <h:panelGroup id="area">
@@ -147,8 +142,8 @@
         <inputHidden xmlns:="http://java.sun.com/jsf/html" id="pointR" value="#{pointBean.newPoint.r}" validatorMessage="Выберите значение R">
             <f:validateDoubleRange minimum="1" maximum="15"/>
         </inputHidden>
-        <h:commandButton action="#{pointBean.addPoint()}" id="submitPoint" update="resultTable"   >
-            <f:ajax execute="pointForm" render="resultTable area redraw rMessagePoint" onevent="repaintPoints()" />
+        <h:commandButton action="#{pointBean.addPoint()}" id="submitPoint" >
+            <f:ajax execute="pointForm" render="resultTable area redraw message" />
         </h:commandButton>
     </h:form>
 
@@ -177,8 +172,8 @@
         </script>
     </p:outputPanel>
 
-    <script src="js/mainPageScripts.js"></script>
-    <script src="js/points.js"></script>
+    <script src="../js/mainPageScripts.js"></script>
+    <script src="../js/points.js"></script>
 </h:body>
 
 </html>
