@@ -58,6 +58,7 @@
     </dependencies>
 
   <build>
+      <finalName>Lab3</finalName>
       <testSourceDirectory>src/main/test/java</testSourceDirectory>
       <plugins>
           <plugin>

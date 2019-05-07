@@ -15,7 +15,7 @@ public class HibernateSessionFactoryUtil {
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
-                Configuration configuration = new Configuration().configure("postgres/hibernateHelios.cfg.xml");
+                Configuration configuration = new Configuration().configure("postgres/hibernateLocal.cfg.xml");
                 configuration.addAnnotatedClass(Result.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties());

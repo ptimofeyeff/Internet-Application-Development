@@ -6,12 +6,20 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        addindData();
-
+        Locale.setDefault(Locale.ENGLISH);
+        testOracle();
     }
-    public static void addindData(){
+
+
+    private static void testOracle(){
         ResultService resultService = new ResultService();
-        List<Result> results = new ArrayList<Result>();
+        Result result = new Result(1,2,3);
+        resultService.saveResult(result);
+    }
+
+    private static void addindData(){
+        ResultService resultService = new ResultService();
+        List<Result> results = new ArrayList<>();
         results.add(new Result(1,2,3));
         results.add(new Result(2,3,5));
         results.add(new Result(3,3,3));
