@@ -1,0 +1,82 @@
+<div class="container">
+
+  <form [formGroup]="form" (ngSubmit)="sendPoint()">
+    <label for="x">Выберите значение X: </label>
+      <select id="x" formControlName="x">
+        <option>-4</option>
+        <option>-3</option>
+        <option>-2</option>
+        <option>-1</option>
+        <option>0</option>
+        <option selected="selected"> 1 </option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+    <div class="validation" *ngIf="form.get('x').invalid && form.get('x').touched">
+      <small *ngIf="form.get('x').errors.required">
+        Введите значение X
+      </small>
+    </div>
+    <br><br>
+
+    <label for="y">
+      Введите значение Y (-5 ... 5):
+    </label>
+      <!--input type="number" name="y" [(ngModel)]="point.y" #y="ngModel"
+             [ngClass]="{'is invalid': f.submitted && y.invalid}" /-->
+      <input id="y" type="text" formControlName="y">
+
+    <div class="validation" *ngIf="form.get('y').invalid && form.get('y').touched">
+
+      <small *ngIf="form.get('y').errors.required">
+        Введите значение Y
+      </small>
+
+      <small *ngIf="form.get('y').errors.min">
+        Значение Y должно быть больше -5
+      </small>
+
+      <small *ngIf="form.get('y').errors.max">
+        Значение Y должно быть меньше 5
+      </small>
+
+      <small *ngIf="form.get('y').errors.pattern">
+        Значение Y должно быть числом
+      </small>
+    </div>
+    <!--div *ngIf="f.submitted &&y.invalid" class="invalid-input">
+      <div *ngIf="y.errors?.required">Это обязательное поле</div>
+      <div *ngIf="y.errors?.pattern">Число должно принадлежать промежутку (-5 ... 5)</div>
+    </div-->
+    <br><br>
+  <label for="r">Выберите значение R:</label>
+      <select id="r" formControlName="r">
+        <option>-4</option>
+        <option>-3</option>
+        <option>-2</option>
+        <option>-1</option>
+        <option>0</option>
+        <option selected="selected">1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+    <div class="validation" *ngIf="form.get('r').invalid && form.get('r').touched">
+
+      <small *ngIf="form.get('r').errors.required">
+        Введите значение R
+      </small>
+
+      <small *ngIf="form.get('r').errors.min">
+        Значение R не может быть отрицательным
+      </small>
+    </div>
+
+
+    <br><br>
+  <button type="submit">
+    Проверить
+  </button>
+  </form>
+</div>
