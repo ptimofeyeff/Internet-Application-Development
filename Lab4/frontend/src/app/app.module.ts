@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AreaComponent } from './area/area.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainPageComponent
+    MainPageComponent,
+    AreaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Point} from './model/Point';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Dot} from './model/Dot';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -9,13 +9,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class MainPageComponent implements OnInit {
 
-  private point: Point = {
-    x: 1,
-    y: 1,
-    r: 1
-  };
+  @ViewChild('graph', {static: false}) graph:ElementRef;
 
-  form: FormGroup ;
+  form: FormGroup;
+  dots: Dot[] = [];
 
   constructor() { }
 
@@ -33,7 +30,7 @@ export class MainPageComponent implements OnInit {
 
   }
 
-  sendPoint(): void{
+  sendForm(): void{
     const controls = this.form.controls;
 
     if(this.form.invalid){
@@ -46,6 +43,29 @@ export class MainPageComponent implements OnInit {
 
     console.log(this.form.value);
   }
+
+
+  addDot(event){
+    if (this.form.controls['r'].invalid){
+      this.form.controls['r'].markAllAsTouched();
+      return;
+    }
+
+    const dot = new Dot(this.form.value.r);
+    dot.svgInit(event.offsetX, event.offsetY);
+    this.dots.push(dot);
+  }
+
+  redrawDots(){
+    const newRadius = this.form.value.r;
+    if (newRadius.invalid) { console.log(1); return;}
+    this.dots.forEach( (dot) => MainPageComponent.redrawDot(dot, newRadius));
+  }
+
+   static redrawDot(dot, newRadius){
+     dot.r = newRadius;
+     dot.areaInit(dot.areaCoordinates.x, dot.areaCoordinates.y);
+   }
 }
 
 
