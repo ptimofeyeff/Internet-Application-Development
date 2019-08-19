@@ -1,6 +1,6 @@
 package lab4.backend.api;
 
-
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -13,6 +13,8 @@ public class DotViewModel {
     private double y;
 
     @NotNull
+    @Positive
+    @Max(4)
     private int radius;
 
     public double getX() {

@@ -6,6 +6,7 @@ import lab4.backend.model.Dot;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.ValidationException;
 
 @RestController
@@ -22,9 +23,9 @@ public class DotController {
     }
 
     @PostMapping
-    public Dot saveDot(@RequestBody DotViewModel dotViewModel, BindingResult bindingResult){
+    public Dot saveDot(@RequestBody @Valid DotViewModel dotViewModel, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            throw new ValidationException("Что-то пошло не так при валидации точки на сервере");
+            throw new ValidationException("Передаваемые данные точки не прошли валидацию на сервере");
         }
 
         Dot dotEntity = this.mapper.convertToDotEntity(dotViewModel);

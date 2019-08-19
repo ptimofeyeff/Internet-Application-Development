@@ -26,9 +26,8 @@ export class MainPageComponent implements OnInit {
           Validators.max(5),
           Validators.pattern("[-+]?[1-9][0-9]*[.,]?[0-9]*")]),
 
-      r: new FormControl('', [Validators.required, Validators.min(0)])
+      r: new FormControl('', [Validators.required, Validators.min(1)])
     });
-
   }
 
   sendForm(): void{
@@ -60,9 +59,8 @@ export class MainPageComponent implements OnInit {
   }
 
   redrawDots(){
-    const newRadius = this.form.value.r;
-    if (newRadius.invalid) { console.log(1); return;}
-    this.dots.forEach( (dot) => MainPageComponent.redrawDot(dot, newRadius));
+    if (this.form.controls['r'].invalid) return;
+    this.dots.forEach( (dot) => MainPageComponent.redrawDot(dot, this.form.value.r));
   }
 
    static redrawDot(dot, newRadius){

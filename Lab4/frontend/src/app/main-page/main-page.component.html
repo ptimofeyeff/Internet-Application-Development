@@ -108,12 +108,7 @@
   <text x="235" y="15">Y</text>
   <text x="435" y="248">X</text>
 
-
-    <circle *ngFor="let dot of dots" r="2"
-            [attr.cx]="dot.svgCoordinates.x"
-            [attr.cy]= "dot.svgCoordinates.y"
-    ></circle>
-
+  <circle *ngFor="let dot of dots" r="2" [attr.cx]="dot.svgCoordinates.x" [attr.cy]= "dot.svgCoordinates.y"></circle>
 
 </svg>
 
