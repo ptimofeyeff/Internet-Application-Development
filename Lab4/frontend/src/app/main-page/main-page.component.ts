@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Dot} from './model/Dot';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../share/api.service';
+import {CoordinatesMapperService} from '../share/coordinates-mapper.service';
 
 @Component({
   selector: 'app-main-page',
@@ -15,7 +16,7 @@ export class MainPageComponent implements OnInit {
   form: FormGroup;
   dots: Dot[] = [];
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private coordinatesMapper: CoordinatesMapperService) { }
 
 
   ngOnInit() {
@@ -52,28 +53,25 @@ export class MainPageComponent implements OnInit {
       return;
     }
 
-    const dot = new Dot(this.form.value.r);
-    dot.svgInit(event.offsetX, event.offsetY);
-    this.dots.push(dot);
-    this.sendDot(new DotViewModel(dot.areaCoordinates.x, dot.areaCoordinates.y, this.form.value.r));
+    const radius = this.form.value.r;
+    const areaX = CoordinatesMapperService.svgXtoAreaX(event.offsetX, radius);
+    const areaY = CoordinatesMapperService.svgYtoAreaY(event.offsetY, radius);
+
+    this.sendDot(new DotViewModel(areaX, areaY, radius));
   }
 
   redrawDots(){
     if (this.form.controls['r'].invalid) return;
-    this.dots.forEach( (dot) => MainPageComponent.redrawDot(dot, this.form.value.r));
+    this.dots.forEach((dot) => dot.changeRadius(this.form.value.r));
   }
-
-   static redrawDot(dot, newRadius){
-     dot.r = newRadius;
-     dot.areaInit(dot.areaCoordinates.x, dot.areaCoordinates.y);
-   }
 
 
    sendDot(dot: DotViewModel){
-      console.log(dot);
-
       this.apiService.postDot(dot).subscribe(
-        res => console.log("Все отправилось"),
+        res => {
+          const dotEntity = new Dot(res['x'], res['y'], res['radius'], res['hit']);
+          this.dots.push(dotEntity);
+        },
         error => console.log("Все сломалось")
       )
    }

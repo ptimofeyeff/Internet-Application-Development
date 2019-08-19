@@ -30,7 +30,7 @@ public class Dot {
     }
 
     private void checkHit() {
-        isHit = ((x <= 0 && y >= 0 && x >= -radius && y <= radius)
+        isHit = ((x <= 0 && y >= 0 && y <= radius/2.0 && x >= -radius && y <= radius)
                 || (x >= 0 && y >= 0 && 2 * y <= radius - x) ||
                 ((Math.pow(x, 2) + Math.pow(y, 2) <= Math.pow(radius / 2.0, 2)) && y <= 0 && x <= 0));
     }

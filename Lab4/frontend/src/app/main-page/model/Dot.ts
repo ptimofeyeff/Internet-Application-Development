@@ -1,36 +1,27 @@
+import {CoordinatesMapperService} from '../../share/coordinates-mapper.service';
+
 export class Dot {
-
-  areaCoordinates: AreaCoordinates = {x: null, y: null};
-  svgCoordinates: SvgCoordinates = {x: null, y: null};
+  x: number;
+  y: number;
   r: number;
+  isHit: boolean;
+  svgX: number;
+  svgY: number;
 
-  constructor(r: number) {
+  constructor(x: number, y: number, r: number, isHit: boolean) {
+    this.x = x;
+    this.y = y;
     this.r = r;
+    this.isHit = isHit;
+    this.svgX = CoordinatesMapperService.areaXtoSvgX(x, r);
+    this.svgY = CoordinatesMapperService.areaYtoSvgY(y, r);
   }
 
-  svgInit(svgX: number, svgY: number){
-    this.svgCoordinates.x = svgX;
-    this.svgCoordinates.y = svgY;
-    this.areaCoordinates.x = (svgX - 225)*0.005*this.r;
-    this.areaCoordinates.y = (225 - svgY)*0.005*this.r;
-  }
-
-  areaInit(areaX: number, areaY: number){
-    this.areaCoordinates.x = areaX;
-    this.areaCoordinates.y = areaY;
-    this.svgCoordinates.x = areaX / (0.005 * this.r) + 225;
-    this.svgCoordinates.y = 225 - ( areaY / (0.005 * this.r));
+  changeRadius(newR: number){
+    this.r = newR;
+    this.svgX = CoordinatesMapperService.areaXtoSvgX(this.x, this.r);
+    this.svgY = CoordinatesMapperService.areaYtoSvgY(this.y, this.r)
   }
 
 }
 
-
-class AreaCoordinates {
-  x: number;
-  y: number;
-}
-
-class SvgCoordinates {
-  x: number;
-  y: number;
-}

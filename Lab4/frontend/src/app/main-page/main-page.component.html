@@ -2,17 +2,17 @@
 
   <form [formGroup]="form" (ngSubmit)="sendForm()">
     <label for="x">Выберите значение X: </label>
-      <select id="x" formControlName="x">
-        <option>-4</option>
-        <option>-3</option>
-        <option>-2</option>
-        <option>-1</option>
-        <option>0</option>
-        <option selected="selected"> 1 </option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-      </select>
+    <select id="x" formControlName="x">
+      <option>-4</option>
+      <option>-3</option>
+      <option>-2</option>
+      <option>-1</option>
+      <option>0</option>
+      <option selected="selected"> 1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+    </select>
     <div class="validation" *ngIf="form.get('x').invalid && form.get('x').touched">
       <small *ngIf="form.get('x').errors.required">
         Введите значение X
@@ -23,7 +23,7 @@
     <label for="y">
       Введите значение Y (-5 ... 5):
     </label>
-      <input id="y" type="text" formControlName="y">
+    <input id="y" type="text" formControlName="y">
 
     <div class="validation" *ngIf="form.get('y').invalid && form.get('y').touched">
 
@@ -44,18 +44,18 @@
       </small>
     </div>
     <br><br>
-  <label for="r">Выберите значение R:</label>
-      <select (change)="redrawDots()" id="r" formControlName="r">
-        <option >-4</option>
-        <option>-3</option>
-        <option>-2</option>
-        <option>-1</option>
-        <option>0</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-      </select>
+    <label for="r">Выберите значение R:</label>
+    <select (change)="redrawDots()" id="r" formControlName="r">
+      <option>-4</option>
+      <option>-3</option>
+      <option>-2</option>
+      <option>-1</option>
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+    </select>
     <div class="validation" *ngIf="form.get('r').invalid && form.get('r').touched">
 
       <small *ngIf="form.get('r').errors.required">
@@ -68,9 +68,9 @@
     </div>
 
     <br><br>
-  <button type="submit">
-    Проверить
-  </button>
+    <button type="submit">
+      Проверить
+    </button>
   </form>
 </div>
 
@@ -108,7 +108,12 @@
   <text x="235" y="15">Y</text>
   <text x="435" y="248">X</text>
 
-  <circle *ngFor="let dot of dots" r="2" [attr.cx]="dot.svgCoordinates.x" [attr.cy]= "dot.svgCoordinates.y"></circle>
+  <circle *ngFor="let dot of dots" r="2"
+          [attr.cx]="dot.svgX"
+          [attr.cy]="dot.svgY"
+          [attr.fill]="dot.isHit===true ? 'yellow' : 'red' "
+
+  ></circle>
 
 </svg>
 
