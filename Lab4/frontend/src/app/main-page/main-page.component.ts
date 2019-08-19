@@ -85,12 +85,12 @@ export class MainPageComponent implements OnInit {
 export class DotViewModel {
   x: number;
   y: number;
-  r: number;
+  radius: number;
 
-  constructor(x: number, y: number, r: number) {
+  constructor(x: number, y: number, radius: number) {
     this.x = x;
     this.y = y;
-    this.r = r;
+    this.radius = radius;
   }
 }
 

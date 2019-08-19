@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class ApiService {
 
-  private readonly BASE_URL = "http://localhost:8082/api";
+  private readonly BASE_URL = "http://localhost:8081/api";
   private readonly SEND_DOT_URL = this.BASE_URL + "/dot";
 
 
