@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Dot} from './model/Dot';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ApiService} from '../share/api.service';
 
 @Component({
   selector: 'app-main-page',
@@ -14,7 +15,7 @@ export class MainPageComponent implements OnInit {
   form: FormGroup;
   dots: Dot[] = [];
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
 
   ngOnInit() {
@@ -39,9 +40,10 @@ export class MainPageComponent implements OnInit {
       return;
     }
 
-    // TODO: Обработка данных формы
-
-    console.log(this.form.value);
+    this.sendDot(new DotViewModel(
+      this.form.value.x,
+      this.form.value.y,
+      this.form.value.r));
   }
 
 
@@ -54,6 +56,7 @@ export class MainPageComponent implements OnInit {
     const dot = new Dot(this.form.value.r);
     dot.svgInit(event.offsetX, event.offsetY);
     this.dots.push(dot);
+    this.sendDot(new DotViewModel(dot.areaCoordinates.x, dot.areaCoordinates.y, this.form.value.r));
   }
 
   redrawDots(){
@@ -66,11 +69,30 @@ export class MainPageComponent implements OnInit {
      dot.r = newRadius;
      dot.areaInit(dot.areaCoordinates.x, dot.areaCoordinates.y);
    }
+
+
+   sendDot(dot: DotViewModel){
+      console.log(dot);
+
+      this.apiService.postDot(dot).subscribe(
+        res => console.log("Все отправилось"),
+        error => console.log("Все сломалось")
+      )
+   }
 }
 
 
+export class DotViewModel {
+  x: number;
+  y: number;
+  r: number;
 
-
+  constructor(x: number, y: number, r: number) {
+    this.x = x;
+    this.y = y;
+    this.r = r;
+  }
+}
 
 
 
