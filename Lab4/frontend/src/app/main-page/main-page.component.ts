@@ -11,12 +11,10 @@ import {CoordinatesMapperService} from '../share/coordinates-mapper.service';
 })
 export class MainPageComponent implements OnInit {
 
-  @ViewChild('graph', {static: false}) graph:ElementRef;
-
   form: FormGroup;
   dots: Dot[] = [];
 
-  constructor(private apiService: ApiService, private coordinatesMapper: CoordinatesMapperService) { }
+  constructor(private apiService: ApiService) { }
 
 
   ngOnInit() {
@@ -72,7 +70,7 @@ export class MainPageComponent implements OnInit {
           const dotEntity = new Dot(res['x'], res['y'], res['radius'], res['hit']);
           this.dots.push(dotEntity);
         },
-        error => console.log("Все сломалось")
+        error => console.log(error)
       )
    }
 }

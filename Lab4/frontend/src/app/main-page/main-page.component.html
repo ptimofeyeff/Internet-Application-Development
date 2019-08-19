@@ -117,3 +117,19 @@
 
 </svg>
 
+<table>
+  <tr>
+    <th>X</th>
+    <th>Y</th>
+    <th>Radius</th>
+    <th>Hit</th>
+  </tr>
+  <tr *ngFor="let dot of dots">
+    <td >{{dot.x}}</td>
+    <td >{{dot.y}}</td>
+    <td >{{dot.r}}</td>
+    <td >{{dot.isHit}}</td>
+  </tr>
+</table>
+
+
