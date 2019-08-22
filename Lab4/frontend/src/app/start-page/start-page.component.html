@@ -1,0 +1,25 @@
+<header>Тимофеев Павел, группа P3202, вариант 20243</header>
+<br>
+<br>
+<form [formGroup]="form" (ngSubmit)="checkUser()">
+  <label for="login">Логин</label>
+  <input id="login" type="text" placeholder="login" formControlName="login">
+  <div class="validation" *ngIf="form.get('login').invalid && form.get('login').touched">
+    <small *ngIf="form.get('login').errors.required">
+      Введите логин
+    </small>
+  </div>
+  <br>
+  <label for="password">Пароль</label>
+  <input id="password" type="password" placeholder="password" formControlName="password">
+  <div class="validation" *ngIf="form.get('password').invalid && form.get('password').touched">
+    <small *ngIf="form.get('password').errors.required">
+      Введите логин
+    </small>
+  </div>
+  <br>
+  <br>
+  <button type="submit">Войти (в айти)</button>
+
+
+</form>
