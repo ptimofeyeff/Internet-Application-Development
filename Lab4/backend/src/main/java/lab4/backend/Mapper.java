@@ -1,7 +1,7 @@
 package lab4.backend;
 
 import lab4.backend.api.DotViewModel;
-import lab4.backend.model.Dot;
+import lab4.backend.database.model.Dot;
 import org.springframework.stereotype.Component;
 
 @Component

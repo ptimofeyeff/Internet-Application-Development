@@ -1,4 +1,4 @@
-package lab4.backend.model;
+package lab4.backend.database.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

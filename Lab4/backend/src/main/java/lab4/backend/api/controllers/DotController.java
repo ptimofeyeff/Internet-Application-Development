@@ -1,8 +1,9 @@
-package lab4.backend.api;
+package lab4.backend.api.controllers;
 
 import lab4.backend.Mapper;
-import lab4.backend.database.DotRepository;
-import lab4.backend.model.Dot;
+import lab4.backend.api.DotViewModel;
+import lab4.backend.database.repo.DotRepository;
+import lab4.backend.database.model.Dot;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
