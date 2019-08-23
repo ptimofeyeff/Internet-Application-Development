@@ -14,12 +14,17 @@
   <input id="password" type="password" placeholder="password" formControlName="password">
   <div class="validation" *ngIf="form.get('password').invalid && form.get('password').touched">
     <small *ngIf="form.get('password').errors.required">
-      Введите логин
+      Введите пароль
     </small>
   </div>
   <br>
   <br>
   <button type="submit">Войти (в айти)</button>
 
+  <div class="validation" *ngIf="failAuth">
+    <small>
+      Неверный логин или пароль
+    </small>
+  </div>
 
 </form>

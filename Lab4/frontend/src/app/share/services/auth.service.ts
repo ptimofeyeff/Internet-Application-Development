@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {User} from '../../main-page/model/User';
 import {ApiService} from './api.service';
-import {Route, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -12,7 +12,7 @@ export class AuthService {
     private router: Router,
   ){}
 
-  login(user: User) {
+  login(user: User): boolean {
     this.apiService.postUser(user).subscribe(
       res => {
         this.isAuth = res;
@@ -20,6 +20,7 @@ export class AuthService {
       },
       err => console.log(err)
     );
+    return this.isAuth;
   }
 
   logout(){

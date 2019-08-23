@@ -13,6 +13,7 @@ import {User} from '../main-page/model/User';
 export class StartPageComponent implements OnInit {
 
   form: FormGroup;
+  failAuth: boolean = false;
 
 
   constructor(
@@ -46,7 +47,7 @@ export class StartPageComponent implements OnInit {
       password: this.form.value.password
     };
 
-    this.auth.login(user);
+    this.failAuth = !this.auth.login(user);
 
   }
 
