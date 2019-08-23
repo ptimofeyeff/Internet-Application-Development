@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ApiService} from '../share/api.service';
+import {ApiService} from '../share/services/api.service';
+import {Router} from '@angular/router';
+import {AuthService} from '../share/services/auth.service';
 import {User} from '../main-page/model/User';
 
 @Component({
@@ -10,11 +12,14 @@ import {User} from '../main-page/model/User';
 })
 export class StartPageComponent implements OnInit {
 
-  user: User = {login: undefined, password: undefined };
   form: FormGroup;
 
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private auth: AuthService
+  ) {}
 
 
   ngOnInit() {
@@ -25,8 +30,7 @@ export class StartPageComponent implements OnInit {
 
   }
 
-
-  checkUser(){
+  submit(){
 
     // TODO попробовать вынести проверку валидности формы в отдельный сервис
     const controls = this.form.controls;
@@ -37,14 +41,12 @@ export class StartPageComponent implements OnInit {
       return;
     }
 
-    this.user.login = this.form.value.login;
-    this.user.password = this.form.value.password;
+    const user: User = {
+      login: this.form.value.login,
+      password: this.form.value.password
+    };
 
-    this.apiService.postUser(this.user).subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    );
-
+    this.auth.login(user);
 
   }
 

@@ -6,6 +6,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { StartPageComponent } from './start-page/start-page.component';
+import {AppRoutingModule} from './share/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { StartPageComponent } from './start-page/start-page.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

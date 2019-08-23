@@ -1,8 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Dot} from './model/Dot';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ApiService} from '../share/api.service';
-import {CoordinatesMapperService} from '../share/coordinates-mapper.service';
+import {ApiService} from '../share/services/api.service';
+import {CoordinatesMapperService} from '../share/services/coordinates-mapper.service';
+import {Router} from '@angular/router';
+import {AuthService} from '../share/services/auth.service';
 
 @Component({
   selector: 'app-main-page',
@@ -14,7 +16,11 @@ export class MainPageComponent implements OnInit {
   form: FormGroup;
   dots: Dot[] = [];
 
-  constructor(private apiService: ApiService) { }
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private  auth: AuthService
+  ) { }
 
 
   ngOnInit() {

@@ -1,7 +1,7 @@
 <header>Тимофеев Павел, группа P3202, вариант 20243</header>
 <br>
 <br>
-<form [formGroup]="form" (ngSubmit)="checkUser()">
+<form [formGroup]="form" (ngSubmit)="submit()">
   <label for="login">Логин</label>
   <input id="login" type="text" placeholder="login" formControlName="login">
   <div class="validation" *ngIf="form.get('login').invalid && form.get('login').touched">

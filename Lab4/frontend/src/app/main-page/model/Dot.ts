@@ -1,4 +1,4 @@
-import {CoordinatesMapperService} from '../../share/coordinates-mapper.service';
+import {CoordinatesMapperService} from '../../share/services/coordinates-mapper.service';
 
 export class Dot {
   x: number;

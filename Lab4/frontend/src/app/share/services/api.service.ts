@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {DotViewModel} from '../main-page/main-page.component';
+import {DotViewModel} from '../../main-page/main-page.component';
 import {Observable} from 'rxjs';
-import {User} from '../main-page/model/User';
+import {User} from '../../main-page/model/User';
 
 @Injectable({
   providedIn: 'root'
