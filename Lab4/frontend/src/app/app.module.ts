@@ -7,12 +7,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { StartPageComponent } from './start-page/start-page.component';
 import {AppRoutingModule} from './share/app-routing.module';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
-    StartPageComponent
+    StartPageComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
