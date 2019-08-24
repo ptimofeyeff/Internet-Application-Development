@@ -45,7 +45,7 @@
     </div>
     <br><br>
     <label for="r">Выберите значение R:</label>
-    <select (change)="redrawDots()" id="r" formControlName="r">
+    <select (change)="redrawDots()" id="r" formControlName="r" [value]="defaultRadius">
       <option>-4</option>
       <option>-3</option>
       <option>-2</option>

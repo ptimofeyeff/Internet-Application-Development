@@ -33,4 +33,10 @@ public class DotController {
         dotRepository.save(dotEntity);
         return dotEntity;
     }
+    
+    @GetMapping
+    public Iterable<Dot> getDots(){
+        return dotRepository.findAll();
+    }
+
 }

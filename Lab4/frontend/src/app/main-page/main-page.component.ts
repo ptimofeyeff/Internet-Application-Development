@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Dot} from './model/Dot';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../share/services/api.service';
@@ -15,15 +15,31 @@ export class MainPageComponent implements OnInit {
 
   form: FormGroup;
   dots: Dot[] = [];
+  defaultRadius = 4;
 
   constructor(
     private apiService: ApiService,
     private router: Router,
-    private  auth: AuthService
-  ) { }
+    private auth: AuthService,
+  ) {}
 
 
   ngOnInit() {
+    this.initFrom();
+    this.initDots();
+  }
+
+  initDots(){
+    this.apiService.getDot().subscribe(
+      dots => {
+        dots.forEach((dot) => this.dots.push(new Dot(dot.x, dot.y, dot.radius, dot.hit)));
+        this.dots.forEach((dot) => dot.changeRadius(this.defaultRadius));
+      },
+      error => console.log(error)
+    )
+  }
+
+  initFrom(){
     this.form = new FormGroup({
       x: new FormControl('', Validators.required),
       y: new FormControl('',

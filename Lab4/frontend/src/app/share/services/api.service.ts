@@ -10,7 +10,7 @@ import {User} from '../../main-page/model/User';
 export class ApiService {
 
   private readonly BASE_URL = "http://localhost:8081/api";
-  private readonly SEND_DOT_URL = this.BASE_URL + "/dot";
+  private readonly DOT_URL = this.BASE_URL + "/dot";
   private readonly SEND_USER_URL = this.BASE_URL + "/login";
 
 
@@ -18,10 +18,15 @@ export class ApiService {
 
 
   postDot(dot: DotViewModel): Observable<any>{
-    return this.http.post(this.SEND_DOT_URL, dot);
+    return this.http.post(this.DOT_URL, dot);
   }
 
   postUser(user: User): Observable<any> {
-    return  this.http.post(this.SEND_USER_URL, user);
+    return this.http.post(this.SEND_USER_URL, user);
   }
+
+  getDot():Observable<any>{
+    return this.http.get(this.DOT_URL);
+  }
+
 }
