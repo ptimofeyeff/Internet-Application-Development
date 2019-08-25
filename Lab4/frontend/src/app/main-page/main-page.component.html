@@ -1,139 +1,164 @@
 <div class="container">
 
-  <form [formGroup]="form" (ngSubmit)="sendForm()">
-    <label for="x">Выберите значение X: </label>
-    <select id="x" formControlName="x">
-      <option>-4</option>
-      <option>-3</option>
-      <option>-2</option>
-      <option>-1</option>
-      <option>0</option>
-      <option selected="selected"> 1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-    </select>
-    <div class="validation" *ngIf="form.get('x').invalid && form.get('x').touched">
-      <small *ngIf="form.get('x').errors.required">
-        Введите значение X
-      </small>
+  <nav class="navbar navbar-dark bg-dark justify-content-end">
+
+    <div class="form-group" >
+      <button class="btn btn-sm btn-primary" type="button" (click)="auth.logout()">Выйти</button>
     </div>
-    <br><br>
+  </nav>
 
-    <label for="y">
-      Введите значение Y (-5 ... 5):
-    </label>
-    <input id="y" type="text" formControlName="y">
+  <div class="row">
 
-    <div class="validation" *ngIf="form.get('y').invalid && form.get('y').touched">
+    <div class="col-sm-4">
 
-      <small *ngIf="form.get('y').errors.required">
-        Введите значение Y
-      </small>
+      <form [formGroup]="form" (ngSubmit)="sendForm()">
+        <div class="row form-group">
+          <div class="col-7">
+              <label for="x">Выберите значение X: </label>
+              <select class="form-control" id="x" formControlName="x">
+                <option>-4</option>
+                <option>-3</option>
+                <option>-2</option>
+                <option>-1</option>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+              <div class="validation" *ngIf="form.get('x').invalid && form.get('x').touched">
+                <small class="invalid" *ngIf="form.get('x').errors.required">
+                  Введите значение X
+                </small>
+              </div>
+            </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-8">
+              <label for="y">
+                Введите значение Y (-5 ... 5):
+              </label>
+              <input class="form-control" id="y" type="text" formControlName="y">
+              <div class="invalid" *ngIf="form.get('y').invalid && form.get('y').touched">
+                <small *ngIf="form.get('y').errors.required">
+                  Введите значение Y
+                </small>
+                <small *ngIf="form.get('y').errors.min">
+                  Значение Y должно быть больше -5
+                </small>
+                <small *ngIf="form.get('y').errors.max">
+                  Значение Y должно быть меньше 5
+                </small>
+                <small *ngIf="form.get('y').errors.pattern">
+                  Значение Y должно быть числом
+                </small>
+              </div>
+            </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-7">
+              <label for="r">Выберите значение R:</label>
+              <select class="form-control" (change)="redrawDots()" id="r" formControlName="r" [value]="defaultRadius">
+                <option>-4</option>
+                <option>-3</option>
+                <option>-2</option>
+                <option>-1</option>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+              <div class="invalid" *ngIf="form.get('r').invalid && form.get('r').touched">
+                <small *ngIf="form.get('r').errors.required">
+                  Введите значение R
+                </small>
 
-      <small *ngIf="form.get('y').errors.min">
-        Значение Y должно быть больше -5
-      </small>
+                <small *ngIf="form.get('r').errors.min">
+                  Значение R не может быть отрицательным
+                </small>
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-dark" type="submit">Проверить</button>
+        </div>
 
-      <small *ngIf="form.get('y').errors.max">
-        Значение Y должно быть меньше 5
-      </small>
-
-      <small *ngIf="form.get('y').errors.pattern">
-        Значение Y должно быть числом
-      </small>
+      </form>
     </div>
-    <br><br>
-    <label for="r">Выберите значение R:</label>
-    <select (change)="redrawDots()" id="r" formControlName="r" [value]="defaultRadius">
-      <option>-4</option>
-      <option>-3</option>
-      <option>-2</option>
-      <option>-1</option>
-      <option>0</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-    </select>
-    <div class="validation" *ngIf="form.get('r').invalid && form.get('r').touched">
 
-      <small *ngIf="form.get('r').errors.required">
-        Введите значение R
-      </small>
 
-      <small *ngIf="form.get('r').errors.min">
-        Значение R не может быть отрицательным
-      </small>
+    <div class="col-sm-8">
+      <svg #graph id="graph" width="450" height="450" (click)="addDot($event)">
+        <rect fill="blue" width="200" height="100" x="25" y="125"></rect>
+        <polyline points="225,225 225,125 425,225 225,225" fill="blue"></polyline>
+        <path fill="blue" d="M125,225 A100,100 0 0,0 225,325 L225,225"></path>
+
+        <!--Вертикальная ось и все, что на ней-->
+        <line x1="5" y1="225" x2="445" y2="225" stroke="black" stroke-width="2"></line>
+        <polyline points="435,220 449,225 435,230"></polyline>
+        <line x1="221" y1="125" x2="229" y2="125" stroke="black" stroke-width="2"></line>
+        <line x1="221" y1="25" x2="229" y2="25" stroke="black" stroke-width="2"></line>
+        <line x1="221" y1="325" x2="229" y2="325" stroke="black" stroke-width="2"></line>
+        <line x1="221" y1="425" x2="229" y2="425" stroke="black" stroke-width="2"></line>
+
+        <!--Горизонтальная ось и все, что на ней-->
+        <line x1="225" y1="5" x2="225" y2="445" stroke="black" stroke-width="2"></line>
+        <polyline points="220,10 225,0 230,10"></polyline>
+        <line x1="125" y1="221" x2="125" y2="229" stroke="black" stroke-width="2"></line>
+        <line x1="25" y1="221" x2="25" y2="229" stroke="black" stroke-width="2"></line>
+        <line x1="325" y1="221" x2="325" y2="229" stroke="black" stroke-width="2"></line>
+        <line x1="425" y1="221" x2="425" y2="229" stroke="black" stroke-width="2"></line>
+
+        <text x="97" y="220">-R/2</text>
+        <text x="230" y="125">R/2</text>
+        <text x="230" y="332">-R/2</text>
+        <text x="332" y="220">R/2</text>
+
+        <text x="25" y="220">-R</text>
+        <text x="230" y="428">-R</text>
+        <text x="230" y="35">R</text>
+        <text x="412" y="220">R</text>
+
+        <text x="235" y="15">Y</text>
+        <text x="435" y="248">X</text>
+
+        <circle *ngFor="let dot of dots" r="2"
+                [attr.cx]="dot.svgX"
+                [attr.cy]="dot.svgY"
+                [attr.fill]="dot.isHit===true ? 'yellow' : 'red' "
+
+        ></circle>
+
+      </svg>
     </div>
+  </div>
 
-    <br><br>
-    <button type="submit">
-      Проверить
-    </button>
-  </form>
+
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>X</th>
+            <th>Y</th>
+            <th>Radius</th>
+            <th>Hit</th>
+          </tr>
+        </thead>
+        <tbody class="table-striped">
+          <tr *ngFor="let dot of dots">
+            <td >{{dot.x}}</td>
+            <td >{{dot.y}}</td>
+            <td >{{dot.r}}</td>
+            <td >{{dot.isHit}}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+
+
+
 </div>
-<br>
-<div>
-  <button (click)="auth.logout()">Выйти</button>
-</div>
-
-<svg #graph id="graph" width="450" height="450" (click)="addDot($event)">
-  <rect fill="blue" width="200" height="100" x="25" y="125"></rect>
-  <polyline points="225,225 225,125 425,225 225,225" fill="blue"></polyline>
-  <path fill="blue" d="M125,225 A100,100 0 0,0 225,325 L225,225"></path>
-
-  <!--Вертикальная ось и все, что на ней-->
-  <line x1="5" y1="225" x2="445" y2="225" stroke="black" stroke-width="2"></line>
-  <polyline points="435,220 449,225 435,230"></polyline>
-  <line x1="221" y1="125" x2="229" y2="125" stroke="black" stroke-width="2"></line>
-  <line x1="221" y1="25" x2="229" y2="25" stroke="black" stroke-width="2"></line>
-  <line x1="221" y1="325" x2="229" y2="325" stroke="black" stroke-width="2"></line>
-  <line x1="221" y1="425" x2="229" y2="425" stroke="black" stroke-width="2"></line>
-
-  <!--Горизонтальная ось и все, что на ней-->
-  <line x1="225" y1="5" x2="225" y2="445" stroke="black" stroke-width="2"></line>
-  <polyline points="220,10 225,0 230,10"></polyline>
-  <line x1="125" y1="221" x2="125" y2="229" stroke="black" stroke-width="2"></line>
-  <line x1="25" y1="221" x2="25" y2="229" stroke="black" stroke-width="2"></line>
-  <line x1="325" y1="221" x2="325" y2="229" stroke="black" stroke-width="2"></line>
-  <line x1="425" y1="221" x2="425" y2="229" stroke="black" stroke-width="2"></line>
-
-  <text x="97" y="220">-R/2</text>
-  <text x="230" y="125">R/2</text>
-  <text x="230" y="332">-R/2</text>
-  <text x="332" y="220">R/2</text>
-
-  <text x="25" y="220">-R</text>
-  <text x="230" y="428">-R</text>
-  <text x="230" y="35">R</text>
-  <text x="412" y="220">R</text>
-
-  <text x="235" y="15">Y</text>
-  <text x="435" y="248">X</text>
-
-  <circle *ngFor="let dot of dots" r="2"
-          [attr.cx]="dot.svgX"
-          [attr.cy]="dot.svgY"
-          [attr.fill]="dot.isHit===true ? 'yellow' : 'red' "
-
-  ></circle>
-
-</svg>
-
-<table>
-  <tr>
-    <th>X</th>
-    <th>Y</th>
-    <th>Radius</th>
-    <th>Hit</th>
-  </tr>
-  <tr *ngFor="let dot of dots">
-    <td >{{dot.x}}</td>
-    <td >{{dot.y}}</td>
-    <td >{{dot.r}}</td>
-    <td >{{dot.isHit}}</td>
-  </tr>
-</table>
-
-

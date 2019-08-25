@@ -9,7 +9,6 @@
         <div class="form-group">
               <label for="login">Логин</label>
               <input class="form-control" id="login" type="text" formControlName="login">
-              <div class="invalid-feedback">Это объязательное поле</div>
               <div class="validation" *ngIf="form.get('login').invalid && form.get('login').touched">
                 <small class="invalid" *ngIf="form.get('login').errors.required">
                   Введите логин
