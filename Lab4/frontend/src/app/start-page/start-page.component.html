@@ -1,30 +1,41 @@
-<header>Тимофеев Павел, группа P3202, вариант 20243</header>
-<br>
-<br>
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <label for="login">Логин</label>
-  <input id="login" type="text" placeholder="login" formControlName="login">
-  <div class="validation" *ngIf="form.get('login').invalid && form.get('login').touched">
-    <small *ngIf="form.get('login').errors.required">
-      Введите логин
-    </small>
-  </div>
-  <br>
-  <label for="password">Пароль</label>
-  <input id="password" type="password" placeholder="password" formControlName="password">
-  <div class="validation" *ngIf="form.get('password').invalid && form.get('password').touched">
-    <small *ngIf="form.get('password').errors.required">
-      Введите пароль
-    </small>
-  </div>
-  <br>
-  <br>
-  <button type="submit">Войти (в айти)</button>
+<div class="container">
+  <nav class="navbar navbar-dark bg-dark justify-content-center">
+    <span class="navbar-text">Тимофеев Павел, группа P3202, вариант 20243</span>
+  </nav>
 
-  <div class="validation" *ngIf="failAuth">
-    <small>
-      Неверный логин или пароль
-    </small>
-  </div>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row justify-content-center">
+      <div class="form-group col-xl-3 col-auto">
+        <div class="form-group">
+              <label for="login">Логин</label>
+              <input class="form-control" id="login" type="text" formControlName="login">
+              <div class="invalid-feedback">Это объязательное поле</div>
+              <div class="validation" *ngIf="form.get('login').invalid && form.get('login').touched">
+                <small class="invalid" *ngIf="form.get('login').errors.required">
+                  Введите логин
+                </small>
+              </div>
+            </div>
+        <div class="form-group">
+              <label for="password">Пароль</label>
+              <input class="form-control" id="password" type="password" formControlName="password">
+              <div class="validation" *ngIf="form.get('password').invalid && form.get('password').touched">
+                <small class="invalid" *ngIf="form.get('password').errors.required">
+                  Введите пароль
+                </small>
+              </div>
+            </div>
+        <div class="form-group form-check">
+          <button class="btn btn-success " type="submit">Войти</button>
+          <div class="validation" *ngIf="failAuth">
+            <small class="invalid">
+              Неверный логин или пароль
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 
-</form>
+
+</div>
