@@ -33,7 +33,8 @@ export class MainPageComponent implements OnInit {
     this.apiService.getDot().subscribe(
       dots => {
         dots.forEach((dot) => this.dots.push(new Dot(dot.x, dot.y, dot.radius, dot.hit)));
-        this.dots.forEach((dot) => dot.changeRadius(this.defaultRadius));
+        this.form.value.r = this.defaultRadius;
+        this.redrawDots();
       },
       error => console.log(error)
     )
@@ -46,8 +47,7 @@ export class MainPageComponent implements OnInit {
         [Validators.required, Validators.min(-5),
           Validators.max(5),
           Validators.pattern("[-+]?[1-9][0-9]*[.,]?[0-9]*")]),
-
-      r: new FormControl('', [Validators.required, Validators.min(1)])
+      r: new FormControl('', [Validators.min(1)])
     });
   }
 
@@ -63,7 +63,10 @@ export class MainPageComponent implements OnInit {
     this.sendDot(new DotViewModel(
       this.form.value.x,
       this.form.value.y,
-      this.form.value.r));
+      this.form.value.r,
+      this.auth.username
+      )
+    )
   }
 
 
@@ -77,7 +80,7 @@ export class MainPageComponent implements OnInit {
     const areaX = CoordinatesMapperService.svgXtoAreaX(event.offsetX, radius);
     const areaY = CoordinatesMapperService.svgYtoAreaY(event.offsetY, radius);
 
-    this.sendDot(new DotViewModel(areaX, areaY, radius));
+    this.sendDot(new DotViewModel(areaX, areaY, radius, this.auth.username));
   }
 
   redrawDots(){
@@ -102,11 +105,13 @@ export class DotViewModel {
   x: number;
   y: number;
   radius: number;
+  user: string;
 
-  constructor(x: number, y: number, radius: number) {
+  constructor(x: number, y: number, radius: number, user: string) {
     this.x = x;
     this.y = y;
     this.radius = radius;
+    this.user = user;
   }
 }
 

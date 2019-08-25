@@ -27,11 +27,17 @@ public class DatabaseSeeder implements CommandLineRunner {
         this.dotRepository.deleteAll();
         this.userRepository.deleteAll();;
 
-        User defaultUser = new User("a", DigestUtils.md5Hex("a"));
-        this.userRepository.save(defaultUser);
+        User defaultUser1 = new User("a", DigestUtils.md5Hex("a"));
+        this.userRepository.save(defaultUser1);
 
-        Dot defaultDot = new Dot(1,2,3);
-        this.dotRepository.save(defaultDot);
+        User defaultUser2 = new User("b", DigestUtils.md5Hex("b"));
+        this.userRepository.save(defaultUser2);
+
+        Dot defaultDot1 = new Dot(1,2,3, defaultUser1);
+        this.dotRepository.save(defaultDot1);
+
+        Dot defaultDot2 = new Dot(3,1,4, defaultUser2);
+        this.dotRepository.save(defaultDot2);
 
         System.out.println("Initialized databased");
     }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.ValidationException;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api/dot")
@@ -35,8 +36,19 @@ public class DotController {
     }
     
     @GetMapping
-    public Iterable<Dot> getDots(){
-        return dotRepository.findAll();
+    public Iterable<DotViewModel> getDots(){
+        Iterable<Dot> dots = dotRepository.findAll();
+        ArrayList<DotViewModel> dotViewModels = new ArrayList<>();
+        dots.forEach(dot -> {
+            dotViewModels.add(new DotViewModel(
+                    dot.getX(),
+                    dot.getY(),
+                    dot.getRadius(),
+                    dot.getUser().getUsername(),
+                    dot.isHit()
+            ));
+        });
+        return dotViewModels;
     }
 
 }

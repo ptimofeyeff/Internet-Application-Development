@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 @Injectable({providedIn: 'root'})
 export class AuthService {
   private isAuth = false;
+  username: string;
 
   constructor(
     private apiService: ApiService,
@@ -17,6 +18,7 @@ export class AuthService {
       res => {
         this.isAuth = res;
         this.router.navigate(['/main']);
+        this.username = user.login;
       },
       err => console.log(err)
     );

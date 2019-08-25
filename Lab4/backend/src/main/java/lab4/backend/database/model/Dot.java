@@ -2,6 +2,8 @@ package lab4.backend.database.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.UUID;
 
 @Entity
@@ -15,16 +17,21 @@ public class Dot {
     private int radius;
     private boolean isHit;
 
+    @ManyToOne
+    @JoinColumn(name="user_id", unique = true)
+    private User user;
+
     private Dot() {
         this.id = UUID.randomUUID();
     }
 
 
-    public Dot(double x, double y, int radius) {
+    public Dot(double x, double y, int radius, User user) {
         this();
         this.x = x;
         this.y = y;
         this.radius = radius;
+        this.user = user;
         checkHit();
 
     }
@@ -50,5 +57,13 @@ public class Dot {
 
     public boolean isHit() {
         return isHit;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
