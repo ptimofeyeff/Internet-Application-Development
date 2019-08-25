@@ -1,9 +1,6 @@
 package lab4.backend.database.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -12,9 +9,13 @@ public class Dot {
     @Id
     private UUID id;
 
+    @Column(nullable = false)
     private double x;
+    @Column(nullable = false)
     private double y;
+    @Column(nullable = false)
     private int radius;
+    @Column(nullable = false)
     private boolean isHit;
 
     @ManyToOne

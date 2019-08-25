@@ -1,5 +1,6 @@
 package lab4.backend.database.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,7 +13,9 @@ public class User {
     @Id
     private UUID id;
 
+    @Column(nullable = false)
     private String login;
+    @Column(nullable = false)
     private String password;
 
 
