@@ -34,10 +34,11 @@ export class MainPageComponent implements OnInit {
       dots => {
         dots.forEach((dot) => {
           if(dot.user === this.auth.username){
-            this.dots.push(new Dot(dot.x, dot.y, dot.radius, dot.hit));
+            const fetchDot: Dot = new Dot(dot.x, dot.y, dot.radius, dot.hit);
+            fetchDot.changeRadius(this.form.value.r);
+            this.dots.push(fetchDot);
           }
         });
-        this.form.value.r = this.defaultRadius;
         this.redrawDots();
       },
       error => console.log(error)
@@ -51,7 +52,7 @@ export class MainPageComponent implements OnInit {
         [Validators.required, Validators.min(-5),
           Validators.max(5),
           Validators.pattern("[-+]?[1-9][0-9]*[.,]?[0-9]*")]),
-      r: new FormControl('', [Validators.min(1)])
+      r: new FormControl(this.defaultRadius, [Validators.min(1)])
     });
   }
 
