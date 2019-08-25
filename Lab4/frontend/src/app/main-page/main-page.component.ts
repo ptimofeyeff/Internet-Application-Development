@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Dot} from './model/Dot';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../share/services/api.service';
@@ -32,7 +32,11 @@ export class MainPageComponent implements OnInit {
   initDots(){
     this.apiService.getDot().subscribe(
       dots => {
-        dots.forEach((dot) => this.dots.push(new Dot(dot.x, dot.y, dot.radius, dot.hit)));
+        dots.forEach((dot) => {
+          if(dot.user === this.auth.username){
+            this.dots.push(new Dot(dot.x, dot.y, dot.radius, dot.hit));
+          }
+        });
         this.form.value.r = this.defaultRadius;
         this.redrawDots();
       },
