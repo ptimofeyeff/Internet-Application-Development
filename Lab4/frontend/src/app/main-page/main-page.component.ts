@@ -71,7 +71,7 @@ export class MainPageComponent implements OnInit {
 
     this.sendDot(new DotViewModel(
       this.form.value.x,
-      this.form.value.y,
+      this.form.value.y.toString().replace(",","."),
       this.form.value.r,
       this.auth.username
       )
