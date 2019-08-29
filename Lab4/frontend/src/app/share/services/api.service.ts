@@ -9,7 +9,7 @@ import {User} from '../../main-page/model/User';
 })
 export class ApiService {
 
-  private readonly BASE_URL = "http://localhost:8081/api";
+  private readonly BASE_URL = window["cfgApiBaseUrl"] + "/api";
   private readonly DOT_URL = this.BASE_URL + "/dot";
   private readonly SEND_USER_URL = this.BASE_URL + "/login";
 

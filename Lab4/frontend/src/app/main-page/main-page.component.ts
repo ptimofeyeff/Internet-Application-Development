@@ -23,6 +23,10 @@ export class MainPageComponent implements OnInit {
     private auth: AuthService,
   ) {}
 
+  getAuth(): AuthService{
+    return this.auth;
+  }
+
 
   ngOnInit() {
     this.initFrom();
